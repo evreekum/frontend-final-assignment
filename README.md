@@ -97,6 +97,8 @@ In the terminal type the following commands:
 The development dependencies will show up in your package.json and package-lock.json files as soon as you install them.
 You can check if the following is added to the package.json file, otherwise add this yourself into the file:
 
+<strong>VERANDER DIT NAAR REACT!! GEEN PARCEL VOLGENS MIJ</strong>
+
 "scripts": {
 <br>
 "start": "parcel src/index.html",
@@ -131,6 +133,8 @@ This application uses the API from Edamam.com. There's multiple options but this
 * Recipe Search API (version V2)
 <br>
 * Food Database API (version V2)
+
+<br><strong> VERANDER DIT WANT IS NU MET .ENV GEDAAN!! OOK WAAR DE DOCENT DE API KEYS NU KAN VINDEN IN PDF BESTAND</strong>
 
 To start using the application you will have to sign-up for an account on the Edamam website.
 To do this visit www.edamam.com and go to "Signup API" in the top right corner. Select the APIs mentioned above and copy and paste your 'app_key' and 'app_id' in the following files:
