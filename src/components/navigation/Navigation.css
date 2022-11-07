@@ -1,0 +1,47 @@
+.nav__outer-container {
+    background-color: var(--light-bg-font-color);
+    align-items: center;
+}
+
+.nav__inner-container {
+    height: 60px;
+    border: 2px solid purple;
+    width: var(--inner-width);
+    /*margin-right: 200px;*/
+    /*margin-left: 200px;*/
+}
+
+.nav__inner-container h2 {
+    height: 50px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-basis: 50%;
+    border: 1px solid blue;
+
+}
+
+.nav__logo {
+    font-family: "Austein", sans-serif;
+    font-size: 30px;
+    font-weight: normal;
+    color: var(--dark-bg-font-color);
+    text-decoration: none;
+
+}
+
+.nav__ul {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-basis: 50%;
+    gap: 35px;
+    height: 50px;
+}
+
+.nav__li {
+    text-transform: capitalize;
+    color: var(--main-font-color);
+    font-size: 12px;
+    font-weight: 600;
+}
