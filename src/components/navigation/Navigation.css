@@ -5,10 +5,9 @@
 
 .nav__inner-container {
     height: 60px;
-    border: 2px solid purple;
     width: var(--inner-width);
-    /*margin-right: 200px;*/
-    /*margin-left: 200px;*/
+    padding-right: 50px;
+    padding-left: 50px;
 }
 
 .nav__inner-container h2 {
@@ -17,13 +16,11 @@
     justify-content: flex-start;
     align-items: center;
     flex-basis: 50%;
-    border: 1px solid blue;
 }
 
 .nav__logo {
     font-family: "Austein", sans-serif;
     font-size: 30px;
-    font-weight: normal;
     color: var(--dark-bg-font-color);
     text-decoration: none;
 }

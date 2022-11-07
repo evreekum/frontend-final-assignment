@@ -16,12 +16,12 @@
 }
 
 /*----Temporary borders----*/
-.outer-container {
-    border: 1px solid green;
-}
-.inner-container {
-    border: 1px solid red;
-}
+/*.outer-container {*/
+/*    border: 1px solid green;*/
+/*}*/
+/*.inner-container {*/
+/*    border: 1px solid red;*/
+/*}*/
 /*_______________________________*/
 body {
     font-family: "poppins", sans-serif;
