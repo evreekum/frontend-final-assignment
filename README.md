@@ -61,7 +61,7 @@ The Calorie Calculator lets you find products and their calories, fat, and carbo
 
 
 Homepage preview:
-
+<strong>ADD SCREENSHOT HOMEPAGE!!!</strong>
 
 ---------------
 3. Installation
