@@ -6,8 +6,6 @@
 .nav__inner-container {
     height: 60px;
     width: var(--inner-width);
-    padding-right: 50px;
-    padding-left: 50px;
 }
 
 .nav__inner-container h2 {
@@ -39,4 +37,9 @@
     color: var(--main-font-color);
     font-size: 12px;
     font-weight: 600;
+}
+
+.nav__li:hover {
+    text-decoration: underline;
+    font-size: 15px;
 }
