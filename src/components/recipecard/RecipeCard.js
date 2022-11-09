@@ -16,7 +16,7 @@ function RecipeCard({id, image, title, calories, ingredients, time}) {
                         <h6>{title}</h6>
                         <section className="recipe-card__info">
                             <p className="recipe-card__ingr-cal"> <strong>{calories}</strong> calories | <strong>{ingredients}</strong> ingredients </p>
-                            <p className="recipe-card__time"><img src="../../assets/icons/time.png" alt="Clock Icon"/><strong>{time}</strong> min </p>
+                            <p className="recipe-card__time"><img src={ClockIcon} alt="Clock Icon"/><strong>{time}</strong> min </p>
                         </section>
                             {/*<ClockIcon className="recipe-card__svg" alt="Clock Icon"/>*/}
                     </span>

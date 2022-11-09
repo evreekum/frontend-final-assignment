@@ -1,4 +1,4 @@
-Recipe Application
+RecipePage Application
 ------------------------------------------------------------------------------------------------------------------------
 Table of Content
 1. Introduction
@@ -15,7 +15,7 @@ Don't look further because this application is made for you!
 
 With this application you can search recipes based on their ingredients, cooking time, meal type, cuisine or dietary requirements!
 <br>
-It also has the ability to search for the calorie count and nutrients of products by using the 'Calorie Calculator'.
+It also has the ability to search for the calorie count and nutrients of products by using the 'Calorie CalculatorPage'.
 
 -----------
 2. Features
@@ -26,18 +26,18 @@ Navigation:
 <br>
 Every page has a navigation-bar where you can easily navigate between the different pages and functions.
 <br>
-Clicking on the logo 'The Clueless Cook' and on 'Home' will bring you back to the homepage.
+Clicking on the logo 'The Clueless Cook' and on 'HomePage' will bring you back to the homepage.
 <br>
 Clicking 'About' brings you to the footer with the about-information of this website.
 <br>
-Clicking 'Calculator' will bring you to the 'Calorie Calculator' page.
+Clicking 'CalculatorPage' will bring you to the 'Calorie CalculatorPage' page.
 
 
 Homepage:
 <br>
 The header of the homepage always features some random recipes as a suggestion. You can directly go to the recipe-page by clicking on it.
 
-In the main of the homepage you can search for recipes by typing your desired ingredient(s) in the "Recipe search" field. You can put in multiple ingredients using a ',' to distinguish the separate ingredients.
+In the main of the homepage you can search for recipes by typing your desired ingredient(s) in the "RecipePage search" field. You can put in multiple ingredients using a ',' to distinguish the separate ingredients.
 You can just search by ingredient name, but you can also use the following option to narrow your search down:
 * Meal Type: this will let you choose what type of meal you would like to find, ie. Breakfast, Lunch, Dinner, etc..
 * Cuisine: this will let you choose what type of cuisine you would like to find, ie. American, Asian, British, etc..
@@ -49,15 +49,15 @@ By opening a new tab you can have multiple recipes open at the same time. This c
 This way your search results will remain open on the homepage.
 
 
-Recipe-page:
+RecipePage-page:
 <br>
 The recipe-page features all the information needed to prepare the recipe ie. ingredients, etc..
 It also shows you the nutrients of the recipe and the health labels associated with the recipe.
 
 
-Calorie Calculator-page:
+Calorie CalculatorPage-page:
 <br>
-The Calorie Calculator lets you find products and their calories, fat, and carbohydrates content. You can add different products together that add up and give you the total amount of calories, fat and carbohydrates.
+The Calorie CalculatorPage lets you find products and their calories, fat, and carbohydrates content. You can add different products together that add up and give you the total amount of calories, fat and carbohydrates.
 
 
 Homepage preview:
@@ -130,7 +130,7 @@ axios: v0.27.2
 Step 4 - API
 <br>
 This application uses the API from Edamam.com. There's multiple options but this application uses the following API's from Edamam:<br>
-* Recipe Search API (version V2)
+* RecipePage Search API (version V2)
 <br>
 * Food Database API (version V2)
 

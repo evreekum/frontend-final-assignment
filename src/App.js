@@ -2,9 +2,9 @@ import "./App.css";
 import React from "react";
 import Navigation from "./components/navigation/Navigation";
 import {Route, Switch} from "react-router-dom";
-import Home from "./pages/home/Home";
-import Recipe from "./pages/recipe/Recipe";
-import Calculator from "./pages/calculator/Calculator";
+import HomePage from "./pages/home/HomePage";
+import RecipePage from "./pages/recipe/RecipePage";
+import CalculatorPage from "./pages/calculator/CalculatorPage";
 import Footer from "./components/footer/Footer";
 
 function App() {
@@ -15,13 +15,13 @@ function App() {
 
                 <Switch>
                     <Route exact path="/">
-                        <Home/>
+                        <HomePage/>
                     </Route>
                     <Route path="/recipe/:recipeId">
-                        <Recipe/>
+                        <RecipePage/>
                     </Route>
                     <Route path="/calculator">
-                        <Calculator/>
+                        <CalculatorPage/>
                     </Route>
                 </Switch>
 

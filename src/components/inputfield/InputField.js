@@ -3,19 +3,22 @@ import {useForm} from "react-hook-form";
 import "./InputField.css";
 
 
-function InputField({title, type, placeholder}) {
+function InputField({title, type, placeholder, onChange, value}) {
 
     const {register} = useForm();
 
     return (
-        <label htmlFor={`${title}-field`}>
+        <label htmlFor={`${title}__field`}>
             <input
                 {...register(`${title}`)}
-                id={`${title}-field`}
+                id={`${title}__field`}
                 type={type}
                 placeholder={placeholder}
+                onChange={onChange}
+                value={value}
             />
         </label>
+
     )
 }
 
