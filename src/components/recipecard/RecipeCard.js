@@ -4,23 +4,26 @@ import ClockIcon from "../../assets/icons/time.svg";
 import {Link} from "react-router-dom";
 
 
-function RecipeCard({id, image, title, ingredients, calories, time}) {
+function RecipeCard({id, image, title, calories, ingredients, time}) {
 
     return (
-        <article className="recipe-card__wrapper">
-            <section className="recipe-card">
-                <Link to={`/recipe/:${id}`} className="recipe-card__link">
-                    <img src={image} alt="Recipe Image"/>
-                    <span className="recipe-card__text">
+
+            <li className="recipe-card__li">
+                <article className="recipe-card">
+                    <Link to={`/recipe/:${id}`} className="recipe-card__link" target="_blank">
+                        <img src={image} alt="Recipe Image"/>
+                        <span className="recipe-card__text">
                         <h6>{title}</h6>
                         <section className="recipe-card__info">
                             <p className="recipe-card__ingr-cal"> <strong>{calories}</strong> calories | <strong>{ingredients}</strong> ingredients </p>
-                            <p className="recipe-card__time">{time} min <ClockIcon alt="Clock Icon"/></p>
+                            <p className="recipe-card__time"><img src="../../assets/icons/time.png" alt="Clock Icon"/><strong>{time}</strong> min </p>
                         </section>
+                            {/*<ClockIcon className="recipe-card__svg" alt="Clock Icon"/>*/}
                     </span>
-                </Link>
-            </section>
-        </article>
+                    </Link>
+                </article>
+            </li>
+
     )
 }
 

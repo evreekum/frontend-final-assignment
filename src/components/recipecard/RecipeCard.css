@@ -1,0 +1,26 @@
+.recipe-card-results__ul {
+    width: 100%;
+    column-count: 3;
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+
+
+
+.recipe-card__li {
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    min-width: calc(100% * (1 /3));
+    min-height: 220px;
+    margin-bottom: 30px;
+    break-inside: avoid-column;
+    background-color: var(--light-bg-font-color);
+    box-shadow: 0 3px 7px -2px rgba(0, 0, 0, 0.44);
+}
+
+/*.recipe-card__svg {*/
+/*    height: 20px;*/
+/*    width: auto;*/
+/*}*/

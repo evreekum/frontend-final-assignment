@@ -1,6 +1,7 @@
 import React from "react";
 import SearchBar from "../../components/searchbar/SearchBar";
 import Header from "../../components/header/Header";
+import RecipeCard from "../../components/recipecard/RecipeCard";
 
 function Home() {
 
@@ -10,9 +11,7 @@ function Home() {
             <main>
                 <Header/>
                 <SearchBar/>
-                <ul className="recipe-result__list">
-                    {recipes.map}
-                </ul>
+                <RecipeCard/>
             </main>
         </>
     )
