@@ -1,24 +1,24 @@
 import React from "react";
-import {useForm} from "react-hook-form";
 import "./InputField.css";
 
 
-function InputField({title, type, placeholder, onChange, value}) {
+function InputField({name, register, validationObject, type, placeholder, value, onChange, errors, }) {
 
-    const {register} = useForm();
+
 
     return (
-        <label htmlFor={`${title}__field`}>
+        <label htmlFor={`${name}__field`}>
             <input
-                {...register(`${title}`)}
-                id={`${title}__field`}
+                name={name}
+                id={`${name}__field`}
                 type={type}
                 placeholder={placeholder}
-                onChange={onChange}
                 value={value}
+                onChange={onChange}
             />
+            {/*{errors[name] && <p className="error-message">{errors[name].message}</p> }*/}
         </label>
-
+    // {...register(name, validationObject)}
     )
 }
 

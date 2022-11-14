@@ -1,7 +1,7 @@
 import React from "react";
 import SearchBar from "../../components/searchbar/SearchBar";
 import Header from "../../components/header/Header";
-import RecipeCard from "../../components/recipecard/RecipeCard";
+
 
 function HomePage() {
 
@@ -11,7 +11,7 @@ function HomePage() {
             <main>
                 <Header/>
                 <SearchBar/>
-                <RecipeCard/>
+
             </main>
         </>
     )

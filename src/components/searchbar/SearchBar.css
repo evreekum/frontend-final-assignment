@@ -11,7 +11,7 @@
     align-self: center;
 }
 
-#search-field {
+#search__field {
     width: 200px;
 }
 
@@ -20,8 +20,8 @@
     height: 32px;
 }
 
-#meal-type-select,
-#cuisine-select,
-#diet-select {
+#meal-type__select,
+#cuisine__select,
+#diet__select {
     text-transform: capitalize;
 }
