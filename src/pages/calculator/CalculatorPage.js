@@ -3,10 +3,12 @@ import "../../App.css";
 import {useForm} from "react-hook-form";
 import InputField from "../../components/inputfield/InputField";
 import Button from "../../components/button/Button";
+import TabTitle from "../../helpers/TabTitle";
+
 
 
 function CalculatorPage() {
-
+    TabTitle("Calorie Calculator");
     const {handleSubmit} = useForm();
 
     function onFormSubmitCalc(data) {

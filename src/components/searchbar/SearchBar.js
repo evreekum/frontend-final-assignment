@@ -66,15 +66,12 @@ function SearchBar() {
         }
 
     }
-
-    // const history = useHistory();
-
     return (
         <>
 
             <div className="searchbar__outer-container outer-container">
                 {/*Using react-hook-form*/}
-                <form className="searchbar__inner-container" onSubmit={onFormSubmit}>
+                <form className="searchbar__inner-container inner-container" onSubmit={onFormSubmit}>
                     <InputField
                         name="search"
                         // register={register}

@@ -10,7 +10,7 @@ function RecipeCard({id, image, title, calories, ingredients, time}) {
 
         <li className="recipe-card__li">
             <article className="recipe-card">
-                <Link to={`/recipe/:${id}`} className="recipe-card__link" target="_blank">
+                <Link to={`/recipe/${id}`} className="recipe-card__link" target="_blank">
 
                     <img className="recipe-card__img" src={image} alt="Meal Image"/>
                     <span className="recipe-card__text">

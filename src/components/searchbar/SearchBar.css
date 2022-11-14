@@ -2,13 +2,13 @@
     height: 90px;
     background-color: var(--dark-bg-font-color);
     margin-bottom: 90px;
+
 }
 
 .searchbar__inner-container {
     display: flex;
     justify-content: space-between;
-    width: var(--inner-width);
-    align-self: center;
+
 }
 
 #search__field {

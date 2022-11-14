@@ -11,13 +11,14 @@ h5 {
 .footer__inner-container {
     background-color: var(--dark-bg-font-color);
     height: 200px;
+    width: 100%;
 }
 
 .footer__ul {
     color: var(--light-bg-font-color);
     font-size: 10px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: flex-start;
     width: var(--inner-width);
 }
