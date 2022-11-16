@@ -23,9 +23,9 @@ function Footer() {
                         <p>Nunc vitae</p>
                     </FooterListItem>
 
-                    <FooterListItem id="about-footer" title="about">
-                        <p>This website is</p>
-                        <p>made by</p>
+                    <FooterListItem title="about">
+                        <p>This application</p>
+                        <p>is made by</p>
                         <p>Evelien van Reekum</p>
                         <p>June 2022</p>
                     </FooterListItem>
@@ -33,7 +33,7 @@ function Footer() {
                     <FooterListItem title="contact">
                         <p>e.v.reekum@gmail.com</p>
                         <p>Phone number:</p>
-                        <p>+31648769524</p>
+                        <p>+31648769***</p>
                     </FooterListItem>
 
                     <FooterListItem title="social">

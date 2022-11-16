@@ -20,7 +20,7 @@ function SearchBar() {
     const [time, setTime] = useState("");
     const [recipes, setRecipes] = useState([]);
 
-    // const {handleSubmit, formState:{errors}, register} = useForm({
+    // const {handleSubmit, register} = useForm({
     //     mode: "onBlur",
     //     defaultValues: {
     //         // "search": "",
@@ -33,8 +33,7 @@ function SearchBar() {
         console.log("Submitted!");
 
         fetchData();
-        // HomeSearchData(search);
-        console.log("FetchData:", fetchData());
+
     }
 
     async function fetchData() {
@@ -48,6 +47,7 @@ function SearchBar() {
                     type: "public",
                     app_key: apiKey,
                     app_id: apiId,
+                    random: true,
                     q: search,
                     mealType: mealType ? mealType : null,
                     cuisineType: cuisine ? cuisine : null,
@@ -66,15 +66,12 @@ function SearchBar() {
         }
 
     }
-
-    // const history = useHistory();
-
     return (
         <>
 
             <div className="searchbar__outer-container outer-container">
                 {/*Using react-hook-form*/}
-                <form className="searchbar__inner-container" onSubmit={onFormSubmit}>
+                <form className="searchbar__inner-container inner-container" onSubmit={(onFormSubmit)}>
                     <InputField
                         name="search"
                         // register={register}
@@ -84,11 +81,11 @@ function SearchBar() {
                         // errors={errors}
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
-                        // value="search"
+
                     />
                     <SelectOptions
                         type="meal-type"
-                        // name="mealType"
+                        name="mealType"
                         value={mealType}
                         onChange={(e) => setMealType(e.target.value)}
                     >
@@ -102,7 +99,7 @@ function SearchBar() {
 
                     <SelectOptions
                         type="cuisine"
-                        // name="cuisine"
+                        name="cuisine"
                         value={cuisine}
                         onChange={(e) => setCuisine(e.target.value)}
                     >
@@ -131,7 +128,7 @@ function SearchBar() {
 
                     <SelectOptions
                         type="diet"
-                        // name="diet"
+                        name="diet"
                         value={diet}
                         onChange={(e) => setDiet(e.target.value)}
                     >
@@ -145,7 +142,7 @@ function SearchBar() {
 
                     <SelectOptions
                         type="Time"
-                        // name="time"
+                        name="time"
                         value={time}
                         onChange={(e) => setTime(e.target.value)}
                     >

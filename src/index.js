@@ -4,11 +4,15 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import {BrowserRouter as Router} from "react-router-dom";
+// import {SearchContextProvider} from "./context/SearchContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <Router>
         <React.StrictMode>
+            {/*<SearchContextProvider>*/}
+            {/*    */}
+            {/*</SearchContextProvider>*/}
             <App/>
         </React.StrictMode>
     </Router>

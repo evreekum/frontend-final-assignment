@@ -15,10 +15,12 @@ function InputField({name, register, validationObject, type, placeholder, value,
                 placeholder={placeholder}
                 value={value}
                 onChange={onChange}
+
             />
+            {/*{...register(name, validationObject)}*/}
             {/*{errors[name] && <p className="error-message">{errors[name].message}</p> }*/}
         </label>
-    // {...register(name, validationObject)}
+
     )
 }
 

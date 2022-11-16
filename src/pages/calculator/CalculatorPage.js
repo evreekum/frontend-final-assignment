@@ -3,10 +3,12 @@ import "../../App.css";
 import {useForm} from "react-hook-form";
 import InputField from "../../components/inputfield/InputField";
 import Button from "../../components/button/Button";
+import TabTitle from "../../helpers/TabTitle";
+
 
 
 function CalculatorPage() {
-
+    TabTitle("Calorie Calculator");
     const {handleSubmit} = useForm();
 
     function onFormSubmitCalc(data) {
@@ -17,7 +19,7 @@ function CalculatorPage() {
     return (
         <main className="outer-container">
             <div className="inner-container">
-                <h3>calorie calculator</h3>
+                <h4>calorie calculator</h4>
                 <form className="calculator-product__form" onSubmit={handleSubmit(onFormSubmitCalc)}>
                     <InputField
                         title="calculator-product"

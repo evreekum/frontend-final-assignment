@@ -1,27 +1,25 @@
 .searchbar__outer-container {
     height: 90px;
     background-color: var(--dark-bg-font-color);
-    margin-bottom: 90px;
+    margin: 90px 0 90px 0;
 }
 
 .searchbar__inner-container {
     display: flex;
     justify-content: space-between;
-    width: var(--inner-width);
-    align-self: center;
 }
 
 #search__field {
     width: 200px;
 }
 
-#search-btn {
-    width: 120px;
-    height: 32px;
-}
-
 #meal-type__select,
 #cuisine__select,
 #diet__select {
     text-transform: capitalize;
+    cursor: pointer;
+}
+
+#Time__select {
+    cursor: pointer;
 }
