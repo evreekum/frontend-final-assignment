@@ -5,7 +5,7 @@ function FooterListItem({title, children}) {
     return (
         <>
             <li>
-                <h5>{title}</h5>
+                <h6 id={`${title}__footer`}>{title}</h6>
                 {children}
             </li>
         </>

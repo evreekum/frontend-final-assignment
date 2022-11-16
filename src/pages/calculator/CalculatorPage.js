@@ -19,7 +19,7 @@ function CalculatorPage() {
     return (
         <main className="outer-container">
             <div className="inner-container">
-                <h3>calorie calculator</h3>
+                <h4>calorie calculator</h4>
                 <form className="calculator-product__form" onSubmit={handleSubmit(onFormSubmitCalc)}>
                     <InputField
                         title="calculator-product"

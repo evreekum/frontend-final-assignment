@@ -1,6 +1,7 @@
 import React from "react";
 import "./RecipeCard.css";
 import ClockIcon from "../../assets/icons/time.svg";
+// import ClockIcon from "../../../public/time.svg";
 import {Link} from "react-router-dom";
 
 
@@ -14,10 +15,10 @@ function RecipeCard({id, image, title, calories, ingredients, time}) {
 
                     <img className="recipe-card__img" src={image} alt="Meal Image"/>
                     <span className="recipe-card__text">
-                        <h6>{title}</h6>
+                        <h6 className="recipe-card__title">{title}</h6>
                         <section className="recipe-card__info">
                             <p className="recipe-card__ingr-cal"> <strong>{calories}</strong> calories | <strong>{ingredients}</strong> ingredients </p>
-                            <p className="recipe-card__time"><img className="clock-icon__svg" src={ClockIcon}
+                            <p className="recipe-card__time"><img src={ClockIcon} className="clock-icon__svg"
                                                                   alt="Clock Icon"/><strong>{time}</strong> min </p>
                         </section>
                         {/*<ClockIcon className="recipe-card__svg" alt="Clock Icon"/>*/}

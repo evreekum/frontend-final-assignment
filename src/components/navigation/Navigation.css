@@ -17,8 +17,6 @@
 }
 
 .nav__logo {
-    font-family: "Austein", sans-serif;
-    font-size: 30px;
     color: var(--dark-bg-font-color);
     text-decoration: none;
 }

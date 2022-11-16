@@ -48,6 +48,7 @@ function SearchBar() {
                     type: "public",
                     app_key: apiKey,
                     app_id: apiId,
+                    random: true,
                     q: search,
                     mealType: mealType ? mealType : null,
                     cuisineType: cuisine ? cuisine : null,

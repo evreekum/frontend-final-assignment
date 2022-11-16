@@ -23,7 +23,7 @@ function Footer() {
                         <p>Nunc vitae</p>
                     </FooterListItem>
 
-                    <FooterListItem id="about-footer" title="about">
+                    <FooterListItem title="about">
                         <p>This website is</p>
                         <p>made by</p>
                         <p>Evelien van Reekum</p>

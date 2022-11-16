@@ -8,6 +8,7 @@ import "./RecipePage.css";
 import TabTitle from "../../helpers/TabTitle";
 
 
+
 const apiKey = process.env.REACT_APP_API_KEY_HOME;
 const apiId = process.env.REACT_APP_API_ID_HOME;
 
@@ -50,7 +51,15 @@ function RecipePage() {
             setIngredients(fetchIngredients);
             setHealthLabels(fetchHealthLabels);
             // setNutrients(fetchNutrients);
-
+            // const totalWeight = recipe.totalWeight;
+            // const totalEnergy = recipe.totalNutrients.ENERC_KCAL.quantity;
+            // const totalFat = recipe.totalNutrients.FAT.quantity;
+            // const totalCarbs = recipe.totalNutrients.CHOCDF.quantity;
+            // const totalSugars = recipe.totalNutrients.SUGAR.quantity;
+            // const totalProtein = recipe.totalNutrients.PROCNT.quantity;
+            // const totalSodium = recipe.totalNutrients.NA.quantity;
+            // totalWeight(totalWeight);
+            // totalEnergy(totalEnergy);
             console.log(fetchRecipe);
 
         } catch (error) {
@@ -66,7 +75,7 @@ function RecipePage() {
                 <article className="recipe-page__inner-container inner-container">
                     <section className="recipe-page__description">
                         <div className="recipe-page__title">
-                            <h3>{recipe.label}</h3>
+                            <h4>{recipe.label}</h4>
                             <p><img className="clock-icon__svg" src={clockIcon}
                                     alt="Clock Icon"/><strong>{recipe.totalTime}</strong> min </p>
 
@@ -79,7 +88,7 @@ function RecipePage() {
                             Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit,
                             posuere a,
                             pede.
-
+                            <br></br><br></br>
                             Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci.
                             Aenean
                             dignissim pellentesque felis.
@@ -87,21 +96,25 @@ function RecipePage() {
                             Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a,
                             ultricies in,
                             diam. Sed arcu. Cras consequat.
-
+                            <br></br>
+                            <br></br>
                             Praesent dapibus, neque id cursus faucibus, tortor neque egestas auguae, eu vulputate magna
                             eros eu
                             erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis
                             luctus,
                             metus.
-
+                            <br></br>
                             Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci.
                             Aenean
                             dignissim pellentesque felis.
-
+                            <br></br>
                             Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a,
                             ultricies in,
                             diam. Sed arcu. Cras consequat.
+
+
                         </p>
+                        <a className="recipe-page__original-link" href={recipe.url} target="_blank" rel="nofollow, noopener, noreferrer">Click here for the original recipe</a>
                     </section>
 
                     <img className="recipe-page__img" src={recipe.images.REGULAR.url} alt="Meal Image"/>
@@ -129,6 +142,13 @@ function RecipePage() {
                         />
 
                         </tbody>*/}
+                            {/*<div>*/}
+                            {/*    <p>{Math.round(recipe.totalNutrients.ENERC_KCAL.quantity / recipe.totalWeight) * 100}</p>*/}
+                            {/*    <Calculate100gr*/}
+                            {/*        totalNutrient={parseInt(recipe.totalNutrients.ENERC_KCAL.quantity)}*/}
+                            {/*        totalWeight={parseInt(recipe.totalWeight)}*/}
+                            {/*    />*/}
+                            {/*</div>*/}
 
                             <table className="recipe-page__nutrients-table">
                                 <tbody>
@@ -148,19 +168,21 @@ function RecipePage() {
                                     </td>
                                     <td className="recipe-nutrients__row-2">{Math.round(recipe.totalNutrients.FAT.quantity)}
                                     </td>
+                                    {/*<td className="recipe-nutrients__row-2">{(recipe.totalNutrients.FAT.quantity / recipe.totalWeight) *100}*/}
+                                    {/*</td>*/}
                                     <td>{recipe.totalNutrients.FAT.unit}</td>
                                 </tr>
                                 <tr>
                                     <td className="recipe-nutrients__row-1">{recipe.totalNutrients.CHOCDF.label}
                                     </td>
-                                    <td className="recipe-nutrients__row-2">{Math.round(recipe.totalNutrients.CHOCDF.quantity)}
+                                    <td className="recipe-nutrients__row-2">{Math.round(recipe.totalNutrients.CHOCDF.quantity / recipe.totalWeight) * 100}
                                     </td>
                                     <td>{recipe.totalNutrients.CHOCDF.unit}</td>
                                 </tr>
                                 <tr>
                                     <td className="recipe-nutrients__row-1">{recipe.totalNutrients.SUGAR.label}
                                     </td>
-                                    <td className="recipe-nutrients__row-2">{Math.round(recipe.totalNutrients.SUGAR.quantity)}
+                                    <td className="recipe-nutrients__row-2">{Math.round(recipe.totalNutrients.SUGAR.quantity / recipe.totalWeight) * 100}
                                     </td>
                                     <td>{recipe.totalNutrients.SUGAR.unit}</td>
                                 </tr>
@@ -182,7 +204,7 @@ function RecipePage() {
                             </table>
                         </section>
                     </div>
-                    <section >
+                    <section>
                         <h5>health labels</h5>
                         <ul className="recipe-page__health-label">
                             {healthLabels.map((healthLabel) => (
