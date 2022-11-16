@@ -13,12 +13,13 @@ function InputField({name, register, validationObject, type, placeholder, value,
                 id={`${name}__field`}
                 type={type}
                 placeholder={placeholder}
-                value={value}
-                onChange={onChange}
+                // value={value}
+                // onChange={onChange}
+                {...register(name, validationObject)}
             />
             {/*{errors[name] && <p className="error-message">{errors[name].message}</p> }*/}
         </label>
-    // {...register(name, validationObject)}
+
     )
 }
 

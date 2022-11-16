@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-// import {useForm} from "react-hook-form";
+import {useForm} from "react-hook-form";
 import SelectOptions from "../select/SelectOptions";
 import Button from "../button/Button";
 import InputField from "../inputfield/InputField";
@@ -20,20 +20,20 @@ function SearchBar() {
     const [time, setTime] = useState("");
     const [recipes, setRecipes] = useState([]);
 
-    // const {handleSubmit, formState:{errors}, register} = useForm({
-    //     mode: "onBlur",
-    //     defaultValues: {
-    //         // "search": "",
-    //     }
-    // });
+    const {handleSubmit, register} = useForm({
+        mode: "onBlur",
+        defaultValues: {
+            // "search": "",
+        }
+    });
 
-    function onFormSubmit(e) {
-        e.preventDefault();
-        // console.log(data);
+    function onFormSubmit(data) {
+        // e.preventDefault();
+        console.log(data);
         console.log("Submitted!");
 
-        fetchData();
-        // HomeSearchData(search);
+        fetchData(data);
+
         console.log("FetchData:", fetchData());
     }
 
@@ -72,10 +72,10 @@ function SearchBar() {
 
             <div className="searchbar__outer-container outer-container">
                 {/*Using react-hook-form*/}
-                <form className="searchbar__inner-container inner-container" onSubmit={onFormSubmit}>
+                <form className="searchbar__inner-container inner-container" onSubmit={handleSubmit(onFormSubmit)}>
                     <InputField
                         name="search"
-                        // register={register}
+                        register={register}
                         // validationObject={{required: "Voer een ingredient in"}}
                         type="search"
                         placeholder="Recipe Search"
