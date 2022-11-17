@@ -1,0 +1,16 @@
+#calc-product__field,
+#calc-amount__field {
+    border-style: solid;
+    border-width: 1px;
+}
+
+#add__btn::before {
+    /*content: url('https://api.iconify.design/material-symbols/add.svg');*/
+    content: "+";
+    color: var(--dark-bg-font-color);
+    padding-right: 10px;
+}
+
+#add__btn::after {
+    content: none;
+}

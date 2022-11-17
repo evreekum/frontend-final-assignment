@@ -4,7 +4,7 @@ import {useForm} from "react-hook-form";
 import InputField from "../../components/inputfield/InputField";
 import Button from "../../components/button/Button";
 import TabTitle from "../../helpers/TabTitle";
-
+import "./CalculatorPage.css";
 
 
 function CalculatorPage() {
@@ -20,25 +20,31 @@ function CalculatorPage() {
         <main className="outer-container">
             <div className="inner-container">
                 <h4>calorie calculator</h4>
-                <form className="calculator-product__form" onSubmit={handleSubmit(onFormSubmitCalc)}>
+                <form className="calc-product__form" onSubmit={handleSubmit(onFormSubmitCalc)}>
                     <InputField
-                        title="calculator-product"
+                        name="calc-product"
                         type="text"
-                        placeholder="Product"
+                        placeholder="&#xf002; Product"
+                        style="font-family: 'Font Awesome 5 Free'; font-weight: 700;"
                     />
                     <Button
                         type="submit"
-                        title="calculator-product"
+                        title="search"
+                        className="calc-search__btn"
                     />
                 </form>
 
-                <form className="calculator-amount__form" onSubmit={handleSubmit(onFormSubmitCalc)}>
+                <form className="calc-amount__form" onSubmit={handleSubmit(onFormSubmitCalc)}>
                     <InputField
-                    title="calculator-amount"
+                    name="calc-amount"
                     type="text"
                     placeholder="Amount"
                     />
-
+                    <Button
+                    type="submit"
+                    title="add"
+                    className="calc-amount__btn"
+                    />
                 </form>
             </div>
 
