@@ -2,6 +2,7 @@ import React from "react";
 import SearchBar from "../../components/searchbar/SearchBar";
 import Header from "../../components/header/Header";
 import TabTitle from "../../helpers/TabTitle";
+import RecipesContext from "../../context/RecipesContext";
 // import {SearchContext} from "../../context/SearchContext";
 
 
@@ -13,8 +14,9 @@ function HomePage() {
         <>
             <main>
                 <Header/>
-                <SearchBar/>
+                {/*<SearchBar/>*/}
                 {/*<SearchContext/>*/}
+                <RecipesContext/>
 
             </main>
         </>

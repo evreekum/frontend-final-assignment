@@ -13,6 +13,7 @@ root.render(
             {/*<SearchContextProvider>*/}
             {/*    */}
             {/*</SearchContextProvider>*/}
+
             <App/>
         </React.StrictMode>
     </Router>

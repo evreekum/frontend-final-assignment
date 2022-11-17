@@ -1,3 +1,4 @@
+/*
 import React, {createContext, useEffect, useState} from "react";
 import {useForm} from "react-hook-form";
 import "../components/searchbar/SearchBar.css";
@@ -106,7 +107,7 @@ export function SearchContextProvider({children}) {
             <>
 
                 <div className="searchbar__outer-container outer-container">
-                    {/*Using react-hook-form*/}
+                    {/!*Using react-hook-form*!/}
                     <form className="searchbar__inner-container inner-container" onSubmit={handleSubmit(onFormSubmit)}>
                         <InputField
                             name="search"
@@ -117,8 +118,8 @@ export function SearchContextProvider({children}) {
                             // errors={errors}
                         />
                         <SelectOptions
-                            type="meal-type"
-                            name="mealType"
+                            type="meaType"
+                            name="meal-type"
                         >
                             <option value="breakfast">Breakfast</option>
                             <option value="brunch">Brunch</option>
@@ -201,7 +202,7 @@ export function SearchContextProvider({children}) {
                                 time={recipes.recipe.totalTime}
                             />
                         }
-                        {/*    {recipes.map((recipe) => (
+                        {/!*    {recipes.map((recipe) => (
                             <RecipeCard
                                 key={recipe.recipe.url}
                                 id={recipe.recipe.uri.split("_")[1]}
@@ -211,7 +212,7 @@ export function SearchContextProvider({children}) {
                                 ingredients={recipe.recipe.ingredientLines.length}
                                 time={recipe.recipe.totalTime}
                             />
-                        ))}*/}
+                        ))}*!/}
 
                     </ul>
                 </div>
@@ -236,3 +237,4 @@ export function SearchContextProvider({children}) {
     )
 
 }
+*/

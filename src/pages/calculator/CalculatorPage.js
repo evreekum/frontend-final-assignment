@@ -24,8 +24,7 @@ function CalculatorPage() {
                     <InputField
                         name="calc-product"
                         type="text"
-                        placeholder="&#xf002; Product"
-                        style="font-family: 'Font Awesome 5 Free'; font-weight: 700;"
+                        placeholder="Product"
                     />
                     <Button
                         type="submit"

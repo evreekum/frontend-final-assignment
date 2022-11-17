@@ -9,7 +9,7 @@
     justify-content: space-between;
 }
 
-#search__field {
+#search__field, #q__field {
     width: 200px;
 }
 

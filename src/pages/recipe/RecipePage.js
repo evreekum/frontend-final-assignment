@@ -22,7 +22,7 @@ function RecipePage() {
 
     useEffect(() => {
         fetchRecipeData();
-    }, []);
+    }, [id]);
 
 
     async function fetchRecipeData() {
@@ -204,7 +204,7 @@ function RecipePage() {
                         <ul className="recipe-page__health-label">
                             {healthLabels.map((healthLabel) => (
 
-                                <li key={ingredients.foodId} className="recipe-page__health-label__li">{healthLabel}</li>
+                                <li key={recipe.totalDaily[0]} className="recipe-page__health-label__li">{healthLabel}</li>
 
                             ))}
                         </ul>

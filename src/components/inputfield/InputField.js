@@ -1,25 +1,25 @@
 import React from "react";
 import "./InputField.css";
+import {useForm} from "react-hook-form";
 
-
-function InputField({name, register, validationObject, type, placeholder, value, onChange, errors, style}) {
-
-
+function InputField({name, validationObject, type, placeholder, value, onChange, errors}) {
+    const {register} = useForm();
 
     return (
         <label htmlFor={`${name}__field`}>
             <input
+                key={name}
                 name={name}
                 id={`${name}__field`}
+                {...register(`${name}`, validationObject)}
                 type={type}
                 placeholder={placeholder}
-                value={value}
-                onChange={onChange}
-                style={style}
 
             />
+            {errors[name] && <p className="error-message">{errors[name].message}</p> }
             {/*{...register(name, validationObject)}*/}
-            {/*{errors[name] && <p className="error-message">{errors[name].message}</p> }*/}
+            {/*// value={value}*/}
+            {/*// onChange={onChange}*/}
         </label>
 
     )
