@@ -2,7 +2,7 @@ import React from "react";
 import "./InputField.css";
 
 
-function InputField({name, register, validationObject, type, placeholder, value, onChange, errors, }) {
+function InputField({name, register, validationObject, type, placeholder, value, onChange, errors, style}) {
 
 
 
@@ -15,6 +15,7 @@ function InputField({name, register, validationObject, type, placeholder, value,
                 placeholder={placeholder}
                 value={value}
                 onChange={onChange}
+                style={style}
 
             />
             {/*{...register(name, validationObject)}*/}

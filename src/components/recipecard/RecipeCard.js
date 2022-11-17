@@ -3,6 +3,7 @@ import "./RecipeCard.css";
 import ClockIcon from "../../assets/icons/time.svg";
 // import ClockIcon from "../../../public/time.svg";
 import {Link} from "react-router-dom";
+import TitleLength from "../../helpers/TitleLength";
 
 
 function RecipeCard({id, image, title, calories, ingredients, time}) {
@@ -15,7 +16,7 @@ function RecipeCard({id, image, title, calories, ingredients, time}) {
 
                     <img className="recipe-card__img" src={image} alt="Meal Image"/>
                     <span className="recipe-card__text">
-                        <h6 className="recipe-card__title">{title}</h6>
+                        <h6 className="recipe-card__title">{TitleLength(`${title}`)}</h6>
                         <section className="recipe-card__info">
                             <p className="recipe-card__ingr-cal"> <strong>{calories}</strong> calories | <strong>{ingredients}</strong> ingredients </p>
                             <p className="recipe-card__time"><img src={ClockIcon} className="clock-icon__svg"

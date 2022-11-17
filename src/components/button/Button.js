@@ -1,11 +1,12 @@
 import React from "react";
 import "./Button.css";
 
-function Button({type, title}) {
+function Button({type, title, className}) {
     return (
         <button
             type={type}
-            id={`${title}-btn`}
+            id={`${title}__btn`}
+            className={className}
         >
             {title}
         </button>
