@@ -40,12 +40,12 @@ function CalculatorPage() {
                     type: "public",
                     app_id: apiIdCalc,
                     app_key: apiKeyCalc,
-                    ingr: data
+                    ingr: {data}
 
                 }
             })
             // setProduct(response.data.text);
-            console.log(response.data.hints)
+            console.log(response.data)
             console.log(response.data.parsed[0]);
         } catch (error) {
             console.error(error);
@@ -53,6 +53,7 @@ function CalculatorPage() {
         }
 
     }
+
 
     //
     // function onFormSubmitCalc(data) {
