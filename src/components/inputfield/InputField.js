@@ -8,7 +8,7 @@ function InputField({name, validationObject, type, placeholder, value, onChange,
     return (
         <label htmlFor={`${name}__field`}>
             <input
-                key={name}
+                key={`${name}__key`}
                 name={name}
                 id={`${name}__field`}
                 {...register(`${name}`, validationObject)}

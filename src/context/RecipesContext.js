@@ -41,7 +41,7 @@ function RecipesContext() {
     async function onFormSubmit(data) {
         toggleError(false);
         toggleLoading(true);
-        console.log(data);
+        console.log("Data:", data);
 
         try {
             const response = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${data}&app_id=${apiId}&app_key=${apiKey}&random=false`)
@@ -49,7 +49,7 @@ function RecipesContext() {
 
             const recipeHits = response.data.hits;
             setRecipes(recipeHits.slice(0, 18));
-            // console.log("Search:", search);
+            console.log("Search:", data);
 
         } catch (error) {
             console.error(error);
@@ -68,7 +68,7 @@ function RecipesContext() {
                     <InputField
                         name="q"
                         register={register}
-                        validationObject={{required: "Voer een ingredient in"}}
+                        validationObject={{required: "Fill in an ingredient"}}
                         type="search"
                         placeholder="Recipe Search"
                         errors={errors}
