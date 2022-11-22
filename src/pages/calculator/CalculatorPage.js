@@ -12,11 +12,20 @@ const apiIdCalc = process.env.REACT_APP_API_ID_CALCULATOR;
 
 function CalculatorPage() {
     TabTitle("Calorie Calculator");
-    const {handleSubmit, formState: {errors}, register} = useForm();
-    const [product, setProduct] = useState("");
-    const [error, toggleError] = useState(false);
+    const {handleSubmit, formState: {errors}, register, getValues} = useForm({
+        mode: "onChange",
+        defaultValues: {
+            product: "",
+            amount: null
+        }
+    });
+    // const [product, setProduct] = useState("");
+    // const [amount, setAmount] = useState(null);
+    // const [error, toggleError] = useState(false);
 
     async function onFormSubmitCalc(product) {
+
+
         try {
             const response = await axios.get(`https://api.edamam.com/api/food-database/v2/parser`, {
                 params: {
@@ -26,11 +35,11 @@ function CalculatorPage() {
                     ingr: product
                 }
             })
-            setProduct(response.data.text);
-            console.log(response, product);
+            // setProduct(response.data.text);
+            console.log(response.data.parsed[0]);
         } catch (error) {
             console.error(error);
-            toggleError(true);
+            // toggleError(true);
         }
 
     }
@@ -41,19 +50,26 @@ function CalculatorPage() {
             <div className="inner-container">
                 <h4>calorie calculator</h4>
                 <form className="calc-product__form" onSubmit={handleSubmit(onFormSubmitCalc)}>
-                    <InputField
-                        name="product"
-                        register={register}
-                        validationObject={{required: "This field can't be empty. Please fill in an ingredient or product and try again."}}
-                        type="text"
-                        placeholder="Product"
-                        errors={errors}
-                    />
-                    <Button
-                        type="submit"
-                        title="search"
-                        className="calc-search__btn"
-                    />
+
+                    <input type="text" {...register("product")}/>
+                    <button type="submit" onSubmit={() => {
+                        const values = getValues();
+                        const singleValue = getValues("product");
+                    }}>Get Values</button>
+
+                    {/*<InputField*/}
+                    {/*    name="product"*/}
+                    {/*    register={register}*/}
+                    {/*    validationObject={{required: "This field can't be empty. Please fill in an ingredient or product and try again."}}*/}
+                    {/*    type="text"*/}
+                    {/*    placeholder="Product"*/}
+                    {/*    errors={errors}*/}
+                    {/*/>*/}
+                    {/*<Button*/}
+                    {/*    type="submit"*/}
+                    {/*    title="search"*/}
+                    {/*    className="calc-search__btn"*/}
+                    {/*/>*/}
                 </form>
 
                 <form className="calc-amount__form" onSubmit={handleSubmit(onFormSubmitCalc)}>
