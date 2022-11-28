@@ -5,6 +5,8 @@ import SelectOptions from "../components/select/SelectOptions";
 import Button from "../components/button/Button";
 import RecipeCard from "../components/recipecard/RecipeCard";
 import {useForm} from "react-hook-form";
+import "../components/searchbar/SearchBar.css";
+import "../App.css";
 // import {useParams} from "react-router-dom";
 
 const apiKey = process.env.REACT_APP_API_KEY_HOME;
@@ -27,15 +29,25 @@ const apiId = process.env.REACT_APP_API_ID_HOME;
 // };
 
 function RecipesContext() {
-    const {handleSubmit, formState: {errors}, register} = useForm({mode: 'onSubmit'});
+    const {handleSubmit, formState: {errors}, register} = useForm({
+        mode: 'onSubmit',
+        defaultValues: {
+            q: "",
+            mealType: "",
+            cuisineType: "",
+            diet: "",
+            time: ""
+        }
+    });
     // const {search} = useContext(SearchContext);
+    const [q, setQ] = useState("");
     const [recipes, setRecipes] = useState("");
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
 
-    useEffect(() => {
+    useEffect((data) => {
 
-        onFormSubmit();
+        onFormSubmit(data);
     }, []);
 
     async function onFormSubmit(data) {
@@ -44,12 +56,17 @@ function RecipesContext() {
         console.log("Data:", data);
 
         try {
-            const response = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${data}&app_id=${apiId}&app_key=${apiKey}&random=false`)
+            const response = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${data}&app_id=${apiId}&app_key=${apiKey}&random=false`, {
+                params: {
+                    q: q
+                }
+            })
             console.log("Response:", response.data.hits);
 
             const recipeHits = response.data.hits;
             setRecipes(recipeHits.slice(0, 18));
             console.log("Search:", data);
+            console.log(recipeHits.slice(0, 18));
 
         } catch (error) {
             console.error(error);

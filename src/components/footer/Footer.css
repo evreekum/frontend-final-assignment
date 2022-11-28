@@ -1,7 +1,15 @@
-.footer__inner-container {
+/*footer {*/
+/*    position: fixed;*/
+/*    bottom: 0;*/
+/*}*/
+
+.footer__outer-container {
     background-color: var(--dark-bg-font-color);
     height: 200px;
-    width: 100%;
+}
+
+.footer__inner-container {
+    min-width: 100%;
 }
 
 .footer__ul {

@@ -36,7 +36,6 @@ function RecipePage() {
                     type: "public",
                     app_key: apiKey,
                     app_id: apiId,
-
                 }
             });
             console.log("Response:", response.data.recipe.ingredientLines);
@@ -57,7 +56,7 @@ function RecipePage() {
 
 
     return (
-        <div className="recipe-page__outer-container outer-container">
+        <main className="recipe-page__outer-container outer-container">
             {Object.keys(recipe).length > 0 &&
                 <article className="recipe-page__inner-container inner-container">
                     <section className="recipe-page__description">
@@ -111,7 +110,7 @@ function RecipePage() {
                         <section className="recipe-page__ingredients">
                             <h5>ingredients</h5>
                             <ul>
-                                {ingredients.map((ingredient) => (
+                                {ingredients.length && ingredients.map((ingredient) => (
 
                                     <li key={ingredients.foodId}>{ingredient}</li>
 
@@ -211,7 +210,7 @@ function RecipePage() {
                     </section>
                 </article>
             }
-        </div>
+        </main>
     )
 }
 

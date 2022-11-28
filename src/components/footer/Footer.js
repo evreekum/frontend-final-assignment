@@ -12,7 +12,7 @@ import FooterListItem from "./helpers/FooterListItem";
 function Footer() {
 
     return (
-        <footer className="outer-container">
+        <footer className="footer__outer-container outer-container">
             <div className="footer__inner-container inner-container">
                 <ul className="footer__ul">
 

@@ -7,6 +7,7 @@
     --button-color: #70B6BE;
     --main-font-color: #3E3E3E;
     --inner-width: 70%;
+    --max-width: 1250px
 }
 
 * {
@@ -27,6 +28,10 @@ body {
     font-family: "poppins", sans-serif;
     background-color: white;
     color: var(--main-font-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
 }
 
 .outer-container {
@@ -35,6 +40,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-content: center;
+
+
 }
 
 .inner-container {
@@ -46,6 +53,8 @@ body {
     align-items: center;
     align-self: center;
     width: var(--inner-width);
+    max-width: var(--max-width);
+
 }
 
 ul {

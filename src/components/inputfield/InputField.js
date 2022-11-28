@@ -1,9 +1,10 @@
 import React from "react";
 import "./InputField.css";
-import {useFormContext} from "react-hook-form";
+import {useForm, useFormContext} from "react-hook-form";
 
 function InputField({name, validationObject, type, placeholder, value, onChange, errors}) {
-    const methods = useFormContext();
+    // const methods = useFormContext();
+    const {register} = useForm();
 
     return (
         <label htmlFor={`${name}__field`}>
@@ -11,7 +12,7 @@ function InputField({name, validationObject, type, placeholder, value, onChange,
                 key={`${name}__key`}
                 name={name}
                 id={`${name}__field`}
-                {...methods.register(`${name}`, validationObject)}
+                {...register(`${name}`, validationObject)}
                 type={type}
                 placeholder={placeholder}
 

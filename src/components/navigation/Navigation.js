@@ -3,6 +3,7 @@ import {NavLink} from "react-router-dom";
 import "./Navigation.css";
 import "./logo-font.css";
 import "../../App.css";
+import {HashLink} from "react-router-hash-link";
 
 function Navigation() {
 
@@ -13,7 +14,7 @@ function Navigation() {
                     <h2><NavLink to="/" exact className="nav__logo">The Clueless Cook</NavLink></h2>
                     <ul className="nav__ul">
                         <li><NavLink to="/" exact className="nav__li">home</NavLink></li>
-                        <li><NavLink to="#about-footer" className="nav__li">about</NavLink></li>
+                        <li><HashLink to="#about__footer" className="nav__li">about</HashLink></li>
                         <li><NavLink to="/calculator" className="nav__li">calculator</NavLink></li>
                     </ul>
                 </nav>
