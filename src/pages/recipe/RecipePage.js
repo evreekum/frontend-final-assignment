@@ -131,8 +131,7 @@ function RecipePage() {
                                 </tr>
                                 <tr>
                                     <td className="recipe-nutrients__row-1">Weight</td>
-                                    <td className="recipe-nutrients__row-2">{Math.round(recipe.totalWeight)}
-                                    </td>
+                                    <td className="recipe-nutrients__row-2">{Math.round(recipe.totalWeight)}</td>
                                     <td className="recipe-nutrients__row-3">g</td>
                                     <td className="recipe-nutrients__row-2">100</td>
                                     <td className="recipe-nutrients__row-3">g</td>
@@ -153,7 +152,7 @@ function RecipePage() {
                                     <td className="recipe-nutrients__row-2">{Math.round(recipe.totalNutrients.FAT.quantity)}
                                     </td>
                                     <td className="recipe-nutrients__row-3">{recipe.totalNutrients.FAT.unit}</td>
-                                    <td className="recipe-nutrients__row-2">{parseFloat((recipe.totalNutrients.FAT.quantity / recipe.totalWeight) * 100).toFixed(2)}
+                                    <td className="recipe-nutrients__row-2">{parseFloat((recipe.totalNutrients.FAT.quantity / recipe.totalWeight) * 100).toFixed(1)}
                                     </td>
                                     <td className="recipe-nutrients__row-3">{recipe.totalNutrients.FAT.unit}</td>
                                 </tr>
@@ -163,7 +162,7 @@ function RecipePage() {
                                     <td className="recipe-nutrients__row-2">{Math.round(recipe.totalNutrients.CHOCDF.quantity)}
                                     </td>
                                     <td className="recipe-nutrients__row-3">{recipe.totalNutrients.CHOCDF.unit}</td>
-                                    <td className="recipe-nutrients__row-2">{parseFloat((recipe.totalNutrients.CHOCDF.quantity / recipe.totalWeight) * 100).toFixed(2)}
+                                    <td className="recipe-nutrients__row-2">{parseFloat((recipe.totalNutrients.CHOCDF.quantity / recipe.totalWeight) * 100).toFixed(1)}
                                     </td>
                                     <td className="recipe-nutrients__row-3">{recipe.totalNutrients.CHOCDF.unit}</td>
                                 </tr>
@@ -173,7 +172,7 @@ function RecipePage() {
                                     <td className="recipe-nutrients__row-2">{Math.round(recipe.totalNutrients.SUGAR.quantity)}
                                     </td>
                                     <td className="recipe-nutrients__row-3">{recipe.totalNutrients.SUGAR.unit}</td>
-                                    <td className="recipe-nutrients__row-2">{parseFloat((recipe.totalNutrients.SUGAR.quantity / recipe.totalWeight) * 100).toFixed(2)}</td>
+                                    <td className="recipe-nutrients__row-2">{parseFloat((recipe.totalNutrients.SUGAR.quantity / recipe.totalWeight) * 100).toFixed(1)}</td>
                                     <td className="recipe-nutrients__row-3">{recipe.totalNutrients.SUGAR.unit}</td>
                                 </tr>
                                 <tr>
@@ -182,7 +181,7 @@ function RecipePage() {
                                     <td className="recipe-nutrients__row-2">{Math.round(recipe.totalNutrients.PROCNT.quantity)}
                                     </td>
                                     <td className="recipe-nutrients__row-3">{recipe.totalNutrients.PROCNT.unit}</td>
-                                    <td className="recipe-nutrients__row-2">{parseFloat((recipe.totalNutrients.PROCNT.quantity / recipe.totalWeight) * 100).toFixed(2)}</td>
+                                    <td className="recipe-nutrients__row-2">{parseFloat((recipe.totalNutrients.PROCNT.quantity / recipe.totalWeight) * 100).toFixed(1)}</td>
                                     <td className="recipe-nutrients__row-3">{recipe.totalNutrients.PROCNT.unit}</td>
                                 </tr>
                                 <tr>
@@ -191,7 +190,7 @@ function RecipePage() {
                                     <td className="recipe-nutrients__row-2">{Math.round(recipe.totalNutrients.NA.quantity)}
                                     </td>
                                     <td className="recipe-nutrients__row-3">{recipe.totalNutrients.NA.unit}</td>
-                                    <td className="recipe-nutrients__row-2">{parseFloat((recipe.totalNutrients.NA.quantity / recipe.totalWeight) * 100).toFixed(2)}</td>
+                                    <td className="recipe-nutrients__row-2">{parseFloat((recipe.totalNutrients.NA.quantity / recipe.totalWeight) * 100).toFixed(0)}</td>
                                     <td className="recipe-nutrients__row-3">{recipe.totalNutrients.NA.unit}</td>
                                 </tr>
                                 </tbody>
@@ -203,7 +202,8 @@ function RecipePage() {
                         <ul className="recipe-page__health-label">
                             {healthLabels.map((healthLabel) => (
 
-                                <li key={recipe.totalDaily[0]} className="recipe-page__health-label__li">{healthLabel}</li>
+                                <li key={recipe.totalDaily[0]}
+                                    className="recipe-page__health-label__li">{healthLabel}</li>
 
                             ))}
                         </ul>

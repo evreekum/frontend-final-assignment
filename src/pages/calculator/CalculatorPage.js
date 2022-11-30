@@ -32,6 +32,29 @@ function CalculatorPage() {
     // const [amount, setAmount] = useState(null);
     // const [error, toggleError] = useState(false);
 
+    function onFormSubmitAmount(data) {
+        try {
+            const response = await axios.post(`https://api.edamam.com/api/food-database/v2/nutrients`, {
+                params: {
+                    app_id: apiIdCalc,
+                    app_key: apiKeyCalc,
+                    ingredients: [{
+                        quantity: amount,
+                        measureURI: uri,
+                        foodId: foodId
+                    }]
+
+                }
+            })
+            // setProduct(response.data.text);
+            console.log(response.data)
+
+        } catch (error) {
+            console.error(error);
+            toggleError(true);
+        }
+    }
+
     const onFormSubmitCalc = async (data) => {
         console.log(data);
         try {

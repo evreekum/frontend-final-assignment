@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
 import TabTitle from "../../helpers/TabTitle";
 import {useForm} from "react-hook-form";
@@ -6,71 +6,137 @@ import Button from "../../components/button/Button";
 import "./CalculatorPage.css";
 import {useParams} from "react-router-dom";
 
+
 const apiKeyCalc = process.env.REACT_APP_API_KEY_CALCULATOR;
 const apiIdCalc = process.env.REACT_APP_API_ID_CALCULATOR;
 
 function CalculatorPageTwo() {
     TabTitle("Calorie Calculator");
     const {handleSubmit, formState: {errors}, register} = useForm({
-            mode: "onSubmit",
+            mode: "onChange",
             defaultValues: {
                 product: "",
-                amount: 1
+                amount: null,
+                quantity: "",
+                measureURI: "",
+                foodId: ""
+
             }
         }
     )
-    const [products, setProducts] = useState([]);
-    const {amount} = useParams();
-    // const [amount, setAmount] = useState(null);
-    const [totalProducts, setTotalProducts] = useState([]);
-    const [calories, setCalories] = useState([]);
-    const [fat, setFat] = useState([]);
-    const [carbs, setCarbs] = useState([]);
-    // const [uri, setUri] = useState("");
-    // const [foodId, setFoodId] = useState("");
+    // const [product, setProduct] = useState("");
+    // const {product} = useParams();
+    const [amount, setAmount] = useState(null);
+    const [foundProduct, setFoundProduct] = useState([]);
+    const [calculator, setCalculator] = useState([]);
+    const [calories, setCalories] = useState(0);
+    const [fat, setFat] = useState(0);
+    const [carbs, setCarbs] = useState(0);
+    const [error, toggleError] = useState(false);
+    const [uri, setUri] = useState("");
+    const [foodId, setFoodId] = useState("");
+
+
 
     async function onFormSubmitCalc(data) {
-        console.log(data);
-        const product = data.product;
-        let amount = data.amount;
+        console.log("Data:", data.product);
+        // const product = data.product;
+        // let amount = data.amount;
 
-        console.log("Product:", product, "Amount:", amount);
         try {
             const response = await axios.get(`https://api.edamam.com/api/food-database/v2/parser`, {
                 params: {
                     type: "logging",
                     app_id: apiIdCalc,
                     app_key: apiKeyCalc,
-                    ingr: product
+                    ingr: data.product
                 }
             })
-            console.log("ingr:", product);
-            setProducts(response.data.hints[0]);
-            setCalories(response.data.hints[0].food.nutrients.ENERC_KCAL * amount);
-            setFat(response.data.hints[0].food.nutrients.FAT * amount);
-            setCarbs(response.data.hints[0].food.nutrients.CHOCDF * amount);
-            console.log(response.data.hints[0].food.nutrients.ENERC_KCAL * amount);
-            console.log(fat);
-            console.log(carbs);
-            // console.log("FoodId:", response.data.hints[0].food.foodId);
-            console.log("Hints:", response.data.hints[0]);
+            console.log("Result:", response.data);
+            const productHits = response.data.hints[0];
+            console.log("Hints:", response.data.hints[0], productHits);
             console.log("Parsed:", response.data.parsed[0]);
-            // console.log(response.food.nutrients.ENERC_KCAL)
+            // setProduct(response.data);
+            setFoundProduct([...foundProduct, productHits]);
+            // setCalories(response.data.hints[0].food.nutrients.ENERC_KCAL * amount);
+            // setFat(response.data.hints[0].food.nutrients.FAT * amount);
+            // setCarbs(response.data.hints[0].food.nutrients.CHOCDF * amount);
+            // console.log(response.data.hints[0].food.nutrients.ENERC_KCAL * amount);
+            // console.log(fat);
+            // console.log(carbs);
+            setFoodId(response.data.hints[0].food.foodId);
+            console.log("FoodId:", response.data.hints[0].food.foodId);
+            setUri(response.data.hints[0].measures[1].uri);
+            console.log("URI:", response.data.hints[0].measures[1].uri);
+
+
         } catch (error) {
             console.error(error);
-            // toggleError(true);
+            toggleError(true);
+        }
+    }
+    useEffect(() => {
+        console.log("Product useEffect:", );
+        onFormSubmitCalc();
+    }, []);
+
+    useEffect(() => {
+        console.log("Amount useEffect:");
+        onFormSubmitAmount();
+    }, [amount]);
+
+
+    async function onFormSubmitAmount(data) {
+        setCalculator([...calculator, [foundProduct, amount]]);
+        console.log("Amount:", data.amount);
+        console.log(uri);
+        console.log(foodId);
+        try {
+            const response = await axios.post(`https://api.edamam.com/api/food-database/v2/nutrients`, {
+                headers: "Accept: application/json",
+                params: {
+                    type: "public",
+                    app_id: apiIdCalc,
+                    app_key: apiKeyCalc,
+                    ingredients: [{
+                        quantity: amount,
+                        measureURI: uri,
+                        foodId: foodId
+                    }]
+
+                }
+            })
+            // setProduct(response.data.text);
+            console.log("Response:", response.data);
+            // setAmount([amount]);
+
+        } catch (error) {
+            console.error(error);
+            toggleError(true);
         }
     }
 
-    // const onFormSubmitAmount = (data) => {
-    //
-    //     setTotalProducts([...totalProducts, [product, amount]]);
-    //
-    //         let newCalories = 0;
-    //         Object.values(data).map((calculate) => newCalories += calculate.nutrients.ENERC_KCAL * amount);
-    //         setTotalProducts(calories => calories + newCalories);
-    //
-    // }
+  /*  function onFormSubmitAmount() {
+        console.log("Amount data:", amount);
+        setCalculator([...calculator, [foundProduct, amount]]);
+        setAmount(amount);
+
+
+        let newCalories = 0;
+        Object.values(foundProduct).map((calculate) => newCalories += calculate.food.nutrients.ENERC_KCAL * amount);
+        setCalories(calories => calories + newCalories);
+
+        let newFat = 0;
+        Object.values(foundProduct).map((calculate) => newFat += calculate.food.nutrients.FAT * amount);
+        setFat(fat => fat + newFat);
+
+        let newCarbs = 0;
+        Object.values(foundProduct).map((calculate) => newCarbs += calculate.food.nutrients.CHOCDF * amount);
+        setCarbs(carbs => carbs + newCarbs);
+
+        setFoundProduct([]);
+
+    }*/
 
 
     /*    async function onFormSubmitAmount(data) {
@@ -119,8 +185,9 @@ function CalculatorPageTwo() {
                     <input
                         id="product__field"
                         type="text"
+                        name="product"
                         {...register("product", {
-                            required: "This field can't be empty. Please fill in an ingredient or product and try again.",
+                            required: "This field can't be empty. Please fill in an ingredient or product and try again."
                         })}
                         placeholder="Product"
                     />
@@ -141,17 +208,17 @@ function CalculatorPageTwo() {
                     </tr>
                     </thead>
                     <tbody>
-                    {Object.keys(products).length > 0 &&
-                        <tr>
-                            <td>{products.food.label}</td>
-                            <td>{Math.round(products.measures[0].weight)}</td>
+                    {Object.keys(foundProduct).length > 0 && foundProduct.map((product) => (
+                        <tr key={product.food.foodId}>
+                            <td>{product.food.label}</td>
+                            <td>{Math.round(product.measures[0].weight)}</td>
                             <td>Gram</td>
                         </tr>
-                    }
+                    ))}
                     </tbody>
                 </table>
 
-                <form onSubmit={handleSubmit(onFormSubmitCalc)}>
+                <form onSubmit={handleSubmit(onFormSubmitAmount)}>
                     <label htmlFor="amount__field">Amount</label>
                     <input
                         id="amount__field"
@@ -178,15 +245,18 @@ function CalculatorPageTwo() {
                     </tr>
                     </thead>
                     <tbody>
-                    {Object.keys(products).length > 0 &&
-                        <tr key={products.food.foodId}>
-                            <td>{products.food.label}</td>
-                            <td>(amount)</td>
-                            <td>{calories} kCal</td>
-                            <td>{(fat).toFixed(1)} g</td>
-                            <td>{(carbs).toFixed(1)} g</td>
-                        </tr>
-                    }
+                    {Object.keys(calculator).length > 0 && calculator.map((array) => {
+                        return array[0].map((amount) => {
+                            return (
+                                <tr key={amount.food.nutrients.ENERC_KCAL}>
+                                    <td>{amount.food.label}</td>
+                                    <td>{Math.round(amount.food.nutrients.ENERC_KCAL)} kCal</td>
+                                    <td>{(amount.food.nutrients.FAT).toFixed(1)} g</td>
+                                    <td>{(amount.food.nutrients.CHOCDF).toFixed(1)} g</td>
+                                </tr>
+                            )
+                        })
+                    })}
                     </tbody>
                 </table>
 

@@ -7,6 +7,7 @@ import RecipeCard from "../components/recipecard/RecipeCard";
 import {useForm} from "react-hook-form";
 import "../components/searchbar/SearchBar.css";
 import "../App.css";
+
 // import {useParams} from "react-router-dom";
 
 const apiKey = process.env.REACT_APP_API_KEY_HOME;
@@ -28,8 +29,15 @@ const apiId = process.env.REACT_APP_API_ID_HOME;
 //     )
 // };
 
+type FormValues = {
+    q: string,
+
+
+
+}
+
 function RecipesContext() {
-    const {handleSubmit, formState: {errors}, register} = useForm({
+    const {handleSubmit, formState: {errors}, register} = useForm<FormValues>({
         mode: 'onSubmit',
         defaultValues: {
             q: "",
@@ -40,7 +48,7 @@ function RecipesContext() {
         }
     });
     // const {search} = useContext(SearchContext);
-    const [q, setQ] = useState("");
+    // const [q, setQ] = useState("");
     const [recipes, setRecipes] = useState("");
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
