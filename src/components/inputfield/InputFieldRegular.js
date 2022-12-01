@@ -10,7 +10,6 @@ function InputFieldRegular({type, name, value, placeholder, onChange, onError, c
                 value={value}
                 placeholder={placeholder}
                 onChange={onChange}
-                onError={onError}
                 className={className}
             />
     )

@@ -12,7 +12,7 @@ function Header() {
                 <div>
                     <h1>delicious recipes</h1>
                     <h3>daily updated</h3>
-                    <HashLink to="#q__field">
+                    <HashLink to="#search__field">
                         <Button
                             type="button"
                             title="find recipes"

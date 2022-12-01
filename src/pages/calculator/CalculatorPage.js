@@ -26,38 +26,47 @@ function CalculatorPage() {
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
 
+    const onFormSubmitProduct = function (e) {
+            e.preventDefault();
 
-    async function fetchProductData(product) {
+        async function fetchProductData(product) {
 
-        toggleLoading(true);
-        try {
-            toggleError(false);
-            const response = await axios.get(`https://api.edamam.com/api/food-database/v2/parser`, {
-                params: {
-                    app_id: apiIdCalc,
-                    app_key: apiKeyCalc,
-                    ingr: product
-                }
-            })
-            console.log("Result:", response.data);
-            const productHints = response.data.hints[0];
-            console.log("Hints:", response.data.hints[0], productHints);
-            console.log("Parsed:", response.data.parsed[0]);
-            setFoundProduct([...foundProduct, productHints]);
+            toggleLoading(true);
+            try {
+                toggleError(false);
+                const response = await axios.get(`https://api.edamam.com/api/food-database/v2/parser`, {
+                    params: {
+                        app_id: apiIdCalc,
+                        app_key: apiKeyCalc,
+                        ingr: product
+                    }
+                })
+                console.log("Result:", response.data);
+                const productHints = response.data.hints[0];
+                console.log("Hints:", response.data.hints[0], productHints);
+                console.log("Parsed:", response.data.parsed[0]);
+                setFoundProduct([...foundProduct, productHints]);
 
-        } catch (error) {
-            console.error(error);
+            } catch (error) {
+                console.error(error);
+                toggleError(true);
+            }
+            toggleLoading(false);
 
-            toggleError(true);
         }
-        toggleLoading(false);
+
+        fetchProductData();
     }
 
     useEffect(() => {
         console.log("Product useEffect:",);
-        fetchProductData(product);
+        if (product) {
+            onFormSubmitProduct();
+            setProduct("");
+        }
 
-    }, []);
+    }, [product]);
+
 
     function onFormSubmitAmount(amount) {
 
@@ -89,13 +98,9 @@ function CalculatorPage() {
             <div className="calc__inner-container inner-container">
                 <h4>calorie calculator</h4>
 
-                <form className="calc-product__form" onSubmit={(e) => {
-                    e.preventDefault();
-                    fetchProductData(product);
-                    setProduct("");
-                }}>
+                <form className="calc-product__form" onSubmit={onFormSubmitProduct}>
                     <InputFieldRegular
-                        type="text"
+                        type="search"
                         name="product"
                         value={product}
                         placeholder="Product"
