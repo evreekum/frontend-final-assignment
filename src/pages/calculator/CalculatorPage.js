@@ -7,8 +7,6 @@ import TabTitle from "../../helpers/TabTitle";
 import "./CalculatorPage.css";
 import axios from "axios";
 import InputFieldRegular from "../../components/inputfield/InputFieldRegular";
-import {logDOM} from "@testing-library/react";
-
 
 const apiKeyCalc = process.env.REACT_APP_API_KEY_CALCULATOR;
 const apiIdCalc = process.env.REACT_APP_API_ID_CALCULATOR;
@@ -26,47 +24,42 @@ function CalculatorPage() {
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
 
-    const onFormSubmitProduct = function (e) {
-            e.preventDefault();
 
-        async function fetchProductData(product) {
+    async function fetchProductData(product) {
 
-            toggleLoading(true);
-            try {
-                toggleError(false);
-                const response = await axios.get(`https://api.edamam.com/api/food-database/v2/parser`, {
-                    params: {
-                        app_id: apiIdCalc,
-                        app_key: apiKeyCalc,
-                        ingr: product
-                    }
-                })
-                console.log("Result:", response.data);
-                const productHints = response.data.hints[0];
-                console.log("Hints:", response.data.hints[0], productHints);
-                console.log("Parsed:", response.data.parsed[0]);
-                setFoundProduct([...foundProduct, productHints]);
+        toggleLoading(true);
+        try {
+            toggleError(false);
+            const response = await axios.get(`https://api.edamam.com/api/food-database/v2/parser`, {
+                mode: "onSubmit",
+                params: {
+                    type: "logging",
+                    app_id: apiIdCalc,
+                    app_key: apiKeyCalc,
+                    ingr: product
+                }
+            })
+            console.log("Result:", response.data);
+            const productHints = response.data.hints[0];
+            console.log("Hints:", response.data.hints[0], productHints);
+            console.log("Parsed:", response.data.parsed[0]);
+            setFoundProduct([...foundProduct, productHints]);
 
-            } catch (error) {
-                console.error(error);
-                toggleError(true);
-            }
-            toggleLoading(false);
-
+        } catch (error) {
+            console.error(error);
+            toggleError(true);
         }
-
-        fetchProductData();
+        toggleLoading(false);
     }
 
     useEffect(() => {
         console.log("Product useEffect:",);
-        if (product) {
-            onFormSubmitProduct();
-            setProduct("");
+        if(product) {
+            fetchProductData(product);
+
         }
 
-    }, [product]);
-
+    }, []);
 
     function onFormSubmitAmount(amount) {
 
@@ -86,26 +79,31 @@ function CalculatorPage() {
         setCarbs(carbs => carbs + newCarbs);
 
         setFoundProduct([]);
+
     }
 
     useEffect(() => {
         console.log("Amount useEffect:");
         onFormSubmitAmount(amount);
-    }, [amount]);
+    }, []);
 
     return (
-        <main className="outer-container">
+        <main className="calc__outer-container outer-container">
             <div className="calc__inner-container inner-container">
                 <h4>calorie calculator</h4>
 
-                <form className="calc-product__form" onSubmit={onFormSubmitProduct}>
+                <form className="calc-product__form" onSubmit={(e) => {
+                    e.preventDefault();
+                    fetchProductData(product);
+                    setProduct("");
+                }}>
                     <InputFieldRegular
                         type="search"
                         name="product"
                         value={product}
                         placeholder="Product"
                         onChange={(e) => setProduct(e.target.value)}
-                        className={error === true ? "product__error-message" : "default"}
+
                     />
                     <Button
                         type="submit"
@@ -131,7 +129,7 @@ function CalculatorPage() {
                     {Object.keys(foundProduct).length > 0 && foundProduct.map((product) => (
                         <tr key={product.food.foodId}>
                             <td>{product.food.label}</td>
-                            <td>{Math.round(product.measures[0].weight)}</td>
+                            <td>{Math.round(product.measures[1].weight)}</td>
                             <td>Gram</td>
                         </tr>
                     ))}

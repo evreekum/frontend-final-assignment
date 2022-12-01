@@ -1,7 +1,7 @@
 import React from "react";
 import "./InputFieldUseForm.css";
 
-function InputFieldRegular({type, name, value, placeholder, onChange, onError, className}) {
+function InputFieldRegular({type, name, value, placeholder, onChange, ref}) {
 
     return (
             <input
@@ -10,7 +10,7 @@ function InputFieldRegular({type, name, value, placeholder, onChange, onError, c
                 value={value}
                 placeholder={placeholder}
                 onChange={onChange}
-                className={className}
+
             />
     )
 }
