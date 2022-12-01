@@ -1,3 +1,4 @@
+/*
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import TabTitle from "../../helpers/TabTitle";
@@ -24,7 +25,7 @@ function CalculatorPageTwo() {
             }
         }
     )
-    // const [product, setProduct] = useState("");
+    const [product, setProduct] = useState("");
     // const {product} = useParams();
     const [amount, setAmount] = useState(null);
     const [foundProduct, setFoundProduct] = useState([]);
@@ -86,40 +87,40 @@ function CalculatorPageTwo() {
     }, [amount]);
 
 
-    async function onFormSubmitAmount(data) {
+    /!*async function onFormSubmitAmount(data) {
         setCalculator([...calculator, [foundProduct, amount]]);
         console.log("Amount:", data.amount);
         console.log(uri);
         console.log(foodId);
         try {
             const response = await axios.post(`https://api.edamam.com/api/food-database/v2/nutrients`, {
+                quantity: "1",
+                measureURI: "http://www.edamam.com/ontologies/edamam.owl#Measure_serving",
+                foodId: "" }, {
                 headers: "Accept: application/json",
                 params: {
                     type: "public",
                     app_id: apiIdCalc,
                     app_key: apiKeyCalc,
-                    ingredients: [{
-                        quantity: amount,
-                        measureURI: uri,
-                        foodId: foodId
-                    }]
+
+
 
                 }
             })
             // setProduct(response.data.text);
             console.log("Response:", response.data);
             // setAmount([amount]);
-
         } catch (error) {
             console.error(error);
             toggleError(true);
         }
-    }
 
-  /*  function onFormSubmitAmount() {
-        console.log("Amount data:", amount);
+    }*!/
+
+    function onFormSubmitAmount() {
+
         setCalculator([...calculator, [foundProduct, amount]]);
-        setAmount(amount);
+
 
 
         let newCalories = 0;
@@ -136,10 +137,10 @@ function CalculatorPageTwo() {
 
         setFoundProduct([]);
 
-    }*/
+    }
 
 
-    /*    async function onFormSubmitAmount(data) {
+    /!*    async function onFormSubmitAmount(data) {
             console.log(data);
             try {
                 const response = await axios.post(`https://api.edamam.com/api/food-database/v2/nutrients?app_id=${apiIdCalc}&app_key=${apiKeyCalc}`, {
@@ -173,7 +174,7 @@ function CalculatorPageTwo() {
                 console.error(error);
             }
 
-        }*/
+        }*!/
 
 
     return (
@@ -186,6 +187,7 @@ function CalculatorPageTwo() {
                         id="product__field"
                         type="text"
                         name="product"
+
                         {...register("product", {
                             required: "This field can't be empty. Please fill in an ingredient or product and try again."
                         })}
@@ -223,6 +225,7 @@ function CalculatorPageTwo() {
                     <input
                         id="amount__field"
                         type="number"
+                        name="amount"
                         {...register("amount")}
                     />
                     <label htmlFor="add__btn">Serving(s)</label>
@@ -238,7 +241,6 @@ function CalculatorPageTwo() {
                     <thead>
                     <tr>
                         <th>product</th>
-                        <th>servings</th>
                         <th>calories</th>
                         <th>fat</th>
                         <th>carbs</th>
@@ -257,6 +259,14 @@ function CalculatorPageTwo() {
                             )
                         })
                     })}
+                    {Object.keys(calculator).length > 0 &&
+                        <tr>
+                            <td>Total</td>
+                            <td>{calories}</td>
+                            <td>{fat}</td>
+                            <td>{carbs}</td>
+                        </tr>
+                    }
                     </tbody>
                 </table>
 
@@ -266,4 +276,4 @@ function CalculatorPageTwo() {
     )
 }
 
-export default CalculatorPageTwo;
+export default CalculatorPageTwo;*/

@@ -2,7 +2,7 @@ import React, {useState} from "react";
 // import {useForm} from "react-hook-form";
 import SelectOptions from "../select/SelectOptions";
 import Button from "../button/Button";
-import InputField from "../inputfield/InputField";
+import InputFieldUseForm from "../inputfield/InputFieldUseForm";
 import "./SearchBar.css";
 import "../../App.css";
 import axios from "axios";
@@ -72,7 +72,7 @@ function SearchBar() {
             <div className="searchbar__outer-container outer-container">
                 {/*Using react-hook-form*/}
                 <form className="searchbar__inner-container inner-container" onSubmit={(onFormSubmit)}>
-                    <InputField
+                    <InputFieldUseForm
                         name="search"
                         // register={register}
                         // validationObject={{required: "Voer een ingredient in"}}

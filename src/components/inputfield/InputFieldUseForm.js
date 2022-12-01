@@ -1,9 +1,8 @@
 import React from "react";
-import "./InputField.css";
-import {useForm, useFormContext} from "react-hook-form";
+import "./InputFieldUseForm.css";
+import {useForm} from "react-hook-form";
 
-function InputField({name, validationObject, type, placeholder, value, onChange, errors}) {
-    // const methods = useFormContext();
+function InputFieldUseForm({name, validationObject, type, placeholder, value, onChange, errors}) {
     const {register} = useForm();
 
     return (
@@ -15,15 +14,10 @@ function InputField({name, validationObject, type, placeholder, value, onChange,
                 {...register(`${name}`, validationObject)}
                 type={type}
                 placeholder={placeholder}
-
             />
             {errors[name] && <p className="error-message">{errors[name].message}</p> }
-            {/*{...register(name, validationObject)}*/}
-            {/*// value={value}*/}
-            {/*// onChange={onChange}*/}
         </label>
-
     )
 }
 
-export default InputField;
+export default InputFieldUseForm;

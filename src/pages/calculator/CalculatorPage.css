@@ -24,3 +24,7 @@
 #add__btn::after {
     content: none;
 }
+
+.product__error-message:after {
+    content: "This field can't be empty. Please fill in an ingredient or product and try again.";
+}

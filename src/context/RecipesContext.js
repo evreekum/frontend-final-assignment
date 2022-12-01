@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-import InputField from "../components/inputfield/InputField";
+import InputFieldUseForm from "../components/inputfield/InputFieldUseForm";
 import SelectOptions from "../components/select/SelectOptions";
 import Button from "../components/button/Button";
 import RecipeCard from "../components/recipecard/RecipeCard";
@@ -8,36 +8,13 @@ import {useForm} from "react-hook-form";
 import "../components/searchbar/SearchBar.css";
 import "../App.css";
 
-// import {useParams} from "react-router-dom";
+
 
 const apiKey = process.env.REACT_APP_API_KEY_HOME;
 const apiId = process.env.REACT_APP_API_ID_HOME;
 
-// export const SearchContext = createContext("");
-//
-// export function SearchContextProvider({children}) {
-//     const [search, setSearch] = useState("");
-//
-//     const data = {
-//         q: search,
-//         changeSearch: setSearch,
-//     }
-//     return (
-//         <SearchContext.Provider value={data}>
-//             {children}
-//         </SearchContext.Provider>
-//     )
-// };
-
-type FormValues = {
-    q: string,
-
-
-
-}
-
 function RecipesContext() {
-    const {handleSubmit, formState: {errors}, register} = useForm<FormValues>({
+    const {handleSubmit, formState: {errors}, register} = useForm({
         mode: 'onSubmit',
         defaultValues: {
             q: "",
@@ -47,8 +24,8 @@ function RecipesContext() {
             time: ""
         }
     });
-    // const {search} = useContext(SearchContext);
-    // const [q, setQ] = useState("");
+
+    const [search, setSearch] = useState("");
     const [recipes, setRecipes] = useState("");
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
@@ -66,7 +43,7 @@ function RecipesContext() {
         try {
             const response = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${data}&app_id=${apiId}&app_key=${apiKey}&random=false`, {
                 params: {
-                    q: q
+                    q: search
                 }
             })
             console.log("Response:", response.data.hits);
@@ -90,8 +67,8 @@ function RecipesContext() {
             <div className="searchbar__outer-container outer-container">
                 {/*Using react-hook-form*/}
                 <form className="searchbar__inner-container inner-container" onSubmit={handleSubmit(onFormSubmit)}>
-                    <InputField
-                        name="q"
+                    <InputFieldUseForm
+                        name="search"
                         register={register}
                         validationObject={{required: "Fill in an ingredient"}}
                         type="search"

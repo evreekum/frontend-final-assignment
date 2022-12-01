@@ -4,7 +4,7 @@ import {useForm} from "react-hook-form";
 import "../components/searchbar/SearchBar.css";
 import "../App.css";
 import axios from "axios";
-import InputField from "../components/inputfield/InputField";
+import InputFieldUseForm from "../components/inputfield/InputFieldUseForm";
 import SelectOptions from "../components/select/SelectOptions";
 import Button from "../components/button/Button";
 import RecipeCard from "../components/recipecard/RecipeCard";
@@ -109,7 +109,7 @@ export function SearchContextProvider({children}) {
                 <div className="searchbar__outer-container outer-container">
                     {/!*Using react-hook-form*!/}
                     <form className="searchbar__inner-container inner-container" onSubmit={handleSubmit(onFormSubmit)}>
-                        <InputField
+                        <InputFieldUseForm
                             name="search"
                             register={register}
                             // validationObject={{required: "Voer een ingredient in"}}
