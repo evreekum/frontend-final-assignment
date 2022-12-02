@@ -26,10 +26,10 @@ function CalculatorPage() {
 
 
     async function fetchProductData(product) {
-
+        toggleError(false);
         toggleLoading(true);
         try {
-            toggleError(false);
+
             const response = await axios.get(`https://api.edamam.com/api/food-database/v2/parser`, {
                 mode: "onSubmit",
                 params: {
@@ -112,7 +112,7 @@ function CalculatorPage() {
                     />
                 </form>
 
-                {error &&
+                {product.length === 0 && error &&
                     <p className="error-message">This field can't be empty. Please fill in an ingredient or product
                         and try again.</p>}
                 {loading && <p className="loading-message">Loading product information.</p>}
@@ -132,7 +132,9 @@ function CalculatorPage() {
                             <td>{Math.round(product.measures[1].weight)}</td>
                             <td>Gram</td>
                         </tr>
-                    ))}
+                    ))
+                    }
+
                     </tbody>
                 </table>
 

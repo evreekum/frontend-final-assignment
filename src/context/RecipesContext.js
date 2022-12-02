@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import axios from "axios";
 import InputFieldUseForm from "../components/inputfield/InputFieldUseForm";
 import SelectOptions from "../components/select/SelectOptions";
@@ -17,7 +17,7 @@ function RecipesContext() {
     const {handleSubmit, formState: {errors}, register} = useForm({
         mode: 'onSubmit',
         defaultValues: {
-            q: "",
+            search: "",
             mealType: "",
             cuisineType: "",
             diet: "",
@@ -25,34 +25,47 @@ function RecipesContext() {
         }
     });
 
-    const [search, setSearch] = useState("");
-    const [recipes, setRecipes] = useState("");
+    const searchRef = useRef(null);
+
+    // const [search, setSearch] = useState("");
+    const [recipes, setRecipes] = useState([]);
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
 
-    useEffect((data) => {
+    // useEffect(() => {
+    //     console.log("useEffect started");
+    //     onFormSubmit();
+    // }, [recipes]);
 
-        onFormSubmit(data);
-    }, []);
 
-    async function onFormSubmit(data) {
+    function onFormSubmit(data) {
+
+        console.log("Form data:", data);
+        fetchRecipes(data);
+    }
+
+    const {ref, ...rest} = register("search");
+    async function fetchRecipes() {
         toggleError(false);
         toggleLoading(true);
-        console.log("Data:", data);
+        // console.log("Data:", data);
 
         try {
-            const response = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${data}&app_id=${apiId}&app_key=${apiKey}&random=false`, {
+            const response = await axios.get(`https://api.edamam.com/api/recipes/v2`, {
                 params: {
-                    q: search
+                    type: "public",
+                    app_id: apiId,
+                    app_key: apiKey,
+                    q: searchRef
                 }
             })
             console.log("Response:", response.data.hits);
 
             const recipeHits = response.data.hits;
             setRecipes(recipeHits.slice(0, 18));
-            console.log("Search:", data);
+            console.log("Search:", );
             console.log(recipeHits.slice(0, 18));
-
+            console.log()
         } catch (error) {
             console.error(error);
             toggleError(true);
@@ -73,6 +86,7 @@ function RecipesContext() {
                         validationObject={{required: "Fill in an ingredient"}}
                         type="search"
                         placeholder="Recipe Search"
+                        ref={searchRef}
                         errors={errors}
                     />
                     <SelectOptions
