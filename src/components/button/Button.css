@@ -27,3 +27,9 @@ button:hover {
     transform: scale3d(1.05, 1.05, 1);
     cursor: pointer;
 }
+
+#next__btn {
+    width: 100px;
+    align-self: center;
+    margin-bottom: 50px;
+}

@@ -24,3 +24,7 @@
 #Time__select {
     cursor: pointer;
 }
+
+.searchbar__count {
+    align-self: center;
+}

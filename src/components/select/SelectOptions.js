@@ -4,7 +4,7 @@ import "./SelectOptions.css";
 // import {useHistory} from "react-router-dom";
 function SelectOptions({type, name, value, onChange, children}) {
 
-    const {register} = useForm();
+    // const {register} = useForm();
     // const history = useHistory();
 
     return (
@@ -12,9 +12,9 @@ function SelectOptions({type, name, value, onChange, children}) {
             <label htmlFor={`${type}__select`}>
                 <select
                     id={`${type}__select`}
-                    {...register(`${name}`)}
-                    // value={value}
-                    // onChange={onChange}
+                    name={name}
+                    value={value}
+                    onChange={onChange}
                 >
                     {/*<option value="" disabled placeholder={type}>{type}</option>*/}
                     {/*<option disabled value defaultValue={type}>{type}</option>*/}
@@ -22,7 +22,7 @@ function SelectOptions({type, name, value, onChange, children}) {
                     {children}
                 </select>
             </label>
-
+    // {...register(`${name}`)}
     )
 }
 export default SelectOptions;

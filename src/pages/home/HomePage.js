@@ -14,9 +14,9 @@ function HomePage() {
         <>
             <main>
                 <Header/>
-                {/*<SearchBar/>*/}
+                <SearchBar/>
                 {/*<SearchContext/>*/}
-                <RecipesContext/>
+                {/*<RecipesContext/>*/}
 
             </main>
         </>

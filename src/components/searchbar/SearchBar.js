@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 // import {useForm} from "react-hook-form";
 import SelectOptions from "../select/SelectOptions";
 import Button from "../button/Button";
@@ -9,7 +9,7 @@ import axios from "axios";
 import RecipeCard from "../recipecard/RecipeCard";
 
 const apiKey = process.env.REACT_APP_API_KEY_HOME;
-const apiId= process.env.REACT_APP_API_ID_HOME;
+const apiId = process.env.REACT_APP_API_ID_HOME;
 
 function SearchBar() {
     // const {search} = useParams();
@@ -19,27 +19,47 @@ function SearchBar() {
     const [diet, setDiet] = useState("");
     const [time, setTime] = useState("");
     const [recipes, setRecipes] = useState([]);
+    const [allData, setAllData] = useState({});
+    const [recipesUrl, setRecipesUrl] = useState(`https://api.edamam.com/api/recipes/v2`);
+    const [count, setCount] = useState(0);
+    const [from, setFrom] = useState(0);
+    const [to, setTo] = useState(0);
+    const [updated, setUpdated] = useState(search);
 
-    // const {handleSubmit, register} = useForm({
-    //     mode: "onBlur",
-    //     defaultValues: {
-    //         // "search": "",
-    //     }
-    // });
+
+    function nextClick() {
+        setRecipesUrl(allData.next.href);
+        window.scrollTo({top: 550, left: 0, behavior: "smooth"})
+        console.log(recipesUrl);
+    }
+
+
+    // function updateMessage() {
+    //     onFormSubmit();
+    //     setUpdated(search);
+    // }
+
+    useEffect(() => {
+        fetchData();
+        console.log("useEffect")
+
+    }, [recipesUrl, search]);
 
     function onFormSubmit(e) {
         e.preventDefault();
         // console.log(data);
         console.log("Submitted!");
-
         fetchData();
+        setSearch("");
+        setUpdated(search);
 
     }
 
     async function fetchData() {
 
+
         try {
-            const response = await axios.get(`https://api.edamam.com/api/recipes/v2`, {
+            const response = await axios.get(recipesUrl, {
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -47,7 +67,6 @@ function SearchBar() {
                     type: "public",
                     app_key: apiKey,
                     app_id: apiId,
-                    random: true,
                     q: search,
                     mealType: mealType ? mealType : null,
                     cuisineType: cuisine ? cuisine : null,
@@ -55,30 +74,40 @@ function SearchBar() {
                     time: time ? time : null
                 }
             });
-
-            const recipeHits = response.data.hits;
-            setRecipes(recipeHits.slice(0, 18));
-
-            console.log("RecipeHits:", recipeHits);
+            console.log("Data:", response.data);
+            const recipeData = response.data;
+            setRecipes(recipeData.hits);
+            setAllData(recipeData._links);
+            setCount(recipeData.count);
+            setFrom(recipeData.from);
+            setTo(recipeData.to);
+            console.log("Count:", count);
+            console.log("From:", from);
+            console.log("To:", to)
+            console.log("RecipeHits:", recipeData.hits);
 
         } catch (error) {
             console.error(error);
         }
 
     }
+
+    // useEffect(() => {
+    //     const controller = new AbortController();
+    //
+    //     return() => controller.abort();
+    // }, []);
+
     return (
         <>
 
             <div className="searchbar__outer-container outer-container">
-                {/*Using react-hook-form*/}
+
                 <form className="searchbar__inner-container inner-container" onSubmit={(onFormSubmit)}>
                     <InputFieldUseForm
                         name="search"
-                        // register={register}
-                        // validationObject={{required: "Voer een ingredient in"}}
                         type="search"
                         placeholder="Recipe Search"
-                        // errors={errors}
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
 
@@ -99,7 +128,7 @@ function SearchBar() {
 
                     <SelectOptions
                         type="cuisine"
-                        name="cuisine"
+                        name="cuisineType"
                         value={cuisine}
                         onChange={(e) => setCuisine(e.target.value)}
                     >
@@ -141,8 +170,8 @@ function SearchBar() {
                     </SelectOptions>
 
                     <SelectOptions
-                        type="time"
-                        name="Time"
+                        type="Time"
+                        name="time"
                         value={time}
                         onChange={(e) => setTime(e.target.value)}
                     >
@@ -160,22 +189,20 @@ function SearchBar() {
                     <Button
                         type="submit"
                         title="search"
+
                     />
                 </form>
             </div>
             <div className="outer-container">
+
+                <div className="searchbar__count">
+                    <p><strong>{count}</strong> recipes found for <strong>{updated}</strong></p>
+                    <p>From: <strong>{from}</strong> To: <strong>{to}</strong></p>
+                </div>
+
+
                 <ul className="recipe-card-results__ul">
-              {/*      {Object.keys(recipes).length > 0 &&
-                        <RecipeCard
-                            key={recipes.recipe.url}
-                            id={recipes.recipe.uri.split("_")[1]}
-                            image={recipes.recipe.images.REGULAR.url}
-                            title={recipes.recipe.label}
-                            calories={Math.round(recipes.recipe.calories)}
-                            ingredients={recipes.recipe.ingredientLines.length}
-                            time={recipes.recipe.totalTime}
-                        />
-                        }*/}
+
                     {recipes.map((recipe) => (
                         <RecipeCard
                             key={recipe.recipe.url}
@@ -189,6 +216,12 @@ function SearchBar() {
                     ))}
 
                 </ul>
+                <Button
+                    type="button"
+                    title="next"
+                    onClick={nextClick}
+                    disabled={!allData.next}
+                />
             </div>
         </>
 

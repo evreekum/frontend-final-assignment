@@ -25,9 +25,9 @@ function RecipesContext() {
         }
     });
 
-    const searchRef = useRef(null);
 
-    // const [search, setSearch] = useState("");
+
+    const [search, setSearch] = useState("");
     const [recipes, setRecipes] = useState([]);
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
@@ -44,8 +44,8 @@ function RecipesContext() {
         fetchRecipes(data);
     }
 
-    const {ref, ...rest} = register("search");
-    async function fetchRecipes() {
+
+    async function fetchRecipes(search) {
         toggleError(false);
         toggleLoading(true);
         // console.log("Data:", data);
@@ -56,13 +56,14 @@ function RecipesContext() {
                     type: "public",
                     app_id: apiId,
                     app_key: apiKey,
-                    q: searchRef
+                    q: search
                 }
             })
             console.log("Response:", response.data.hits);
 
             const recipeHits = response.data.hits;
             setRecipes(recipeHits.slice(0, 18));
+
             console.log("Search:", );
             console.log(recipeHits.slice(0, 18));
             console.log()
@@ -86,7 +87,6 @@ function RecipesContext() {
                         validationObject={{required: "Fill in an ingredient"}}
                         type="search"
                         placeholder="Recipe Search"
-                        ref={searchRef}
                         errors={errors}
                     />
                     <SelectOptions
@@ -162,6 +162,7 @@ function RecipesContext() {
                     <Button
                         type="submit"
                         title="search"
+
                     />
                 </form>
             </div>
