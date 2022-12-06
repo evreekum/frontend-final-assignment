@@ -1,0 +1,38 @@
+.searchbar__outer-container {
+    height: 90px;
+    background-color: var(--dark-bg-font-color);
+    margin: 90px 0 50px 0;
+}
+
+.searchbar__inner-container {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+}
+
+#search__field {
+    width: 200px;
+}
+
+#meal-type__select,
+#cuisine__select,
+#diet__select {
+    text-transform: capitalize;
+    cursor: pointer;
+}
+
+#Time__select {
+    cursor: pointer;
+}
+
+.searchbar__count {
+    align-self: center;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#next__btn {
+    width: 100px;
+    align-self: center;
+    margin-bottom: 50px;
+}

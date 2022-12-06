@@ -5,10 +5,7 @@
 
 .nav__inner-container {
     height: 60px;
-    border: 2px solid purple;
     width: var(--inner-width);
-    /*margin-right: 200px;*/
-    /*margin-left: 200px;*/
 }
 
 .nav__inner-container h2 {
@@ -17,17 +14,18 @@
     justify-content: flex-start;
     align-items: center;
     flex-basis: 50%;
-    border: 1px solid blue;
-
 }
 
 .nav__logo {
     font-family: "Austein", sans-serif;
     font-size: 30px;
-    font-weight: normal;
     color: var(--dark-bg-font-color);
     text-decoration: none;
+}
 
+h2:hover {
+    transform: scale3d(1.05, 1.05, 1.05);
+    /*text-shadow: rgba(0, 0, 0, 0.4) 0 2px 14px 2px ;*/
 }
 
 .nav__ul {
@@ -44,4 +42,19 @@
     color: var(--main-font-color);
     font-size: 12px;
     font-weight: 600;
+}
+
+.nav__li:hover {
+    text-decoration: underline;
+    font-size: 15px;
+}
+
+.auth__btn {
+    width: fit-content;
+    padding: 0 15px 0 15px;
+}
+
+.auth__btn::after {
+    content: "";
+    padding-left: 0;
 }

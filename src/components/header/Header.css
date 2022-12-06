@@ -1,0 +1,13 @@
+.header__outer-container {
+    background-image: url("../../assets/images/hero-image.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    /*flex-basis: 450px;*/
+    height: 400px;
+}
+
+.header__inner-container {
+    justify-content: flex-start;
+    margin-top: 25px;
+}
+

@@ -1,18 +1,18 @@
 import React from "react";
 import "./Footer.css";
 import "../../App.css";
-import SocialIcon from "./SocialIcon";
+import SocialIcon from "./helpers/SocialIcon";
 import {ReactComponent as FacebookIcon} from "../../assets/icons/facebook.svg";
 import {ReactComponent as InstagramIcon} from "../../assets/icons/instagram.svg";
 import {ReactComponent as LinkedInIcon} from "../../assets/icons/linkedin.svg";
 import {ReactComponent as TwitterIcon} from "../../assets/icons/twitter.svg";
-import FooterListItem from "./FooterListItem";
+import FooterListItem from "./helpers/FooterListItem";
 
 
 function Footer() {
 
     return (
-        <footer className="outer-container">
+        <footer className="footer__outer-container outer-container">
             <div className="footer__inner-container inner-container">
                 <ul className="footer__ul">
 
@@ -23,9 +23,9 @@ function Footer() {
                         <p>Nunc vitae</p>
                     </FooterListItem>
 
-                    <FooterListItem id="about-footer" title="about">
-                        <p>This website is</p>
-                        <p>made by</p>
+                    <FooterListItem title="about">
+                        <p>This application</p>
+                        <p>is made by</p>
                         <p>Evelien van Reekum</p>
                         <p>June 2022</p>
                     </FooterListItem>
@@ -33,7 +33,7 @@ function Footer() {
                     <FooterListItem title="contact">
                         <p>e.v.reekum@gmail.com</p>
                         <p>Phone number:</p>
-                        <p>+31648769524</p>
+                        <p>+31648769***</p>
                     </FooterListItem>
 
                     <FooterListItem title="social">

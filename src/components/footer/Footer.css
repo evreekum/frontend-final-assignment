@@ -1,27 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/*footer {*/
+/*    position: fixed;*/
+/*    bottom: 0;*/
+/*}*/
 
-
-h5 {
-    font-size: 12px;
-    font-weight: 500;
-    padding-bottom: 8px;
-    text-transform: capitalize;
-    color: var(--button-color);
+.footer__outer-container {
+    background-color: var(--dark-bg-font-color);
+    height: 200px;
 }
 
 .footer__inner-container {
-    background-color: var(--dark-bg-font-color);
-    height: 200px;
-    /*width: 100%;*/
+    min-width: 100%;
 }
 
 .footer__ul {
     color: var(--light-bg-font-color);
     font-size: 10px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: flex-start;
     width: var(--inner-width);
+}
+
+.footer__ul li p {
+    padding-top: 5px;
 }
 
 .footer__social-card {
@@ -37,12 +38,15 @@ h5 {
     border-radius: 50%;
 }
 
+.footer__social-circle:hover {
+    transform: scale3d(1.5, 1.5, 1.5);
+}
+
 .footer__social-icon {
     display: flex;
     flex-direction: column;
-    padding-top: 20%;
+    padding-top: 24%;
     align-items: center;
-
 }
 
 .footer__svg {
