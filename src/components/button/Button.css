@@ -2,8 +2,7 @@ button {
     text-transform: capitalize;
     text-decoration: none;
     text-align: start;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 0 20px 0 20px;
     font-family: "poppins", sans-serif;
     font-size: 12px;
     font-weight: 600;
@@ -26,10 +25,4 @@ button:hover {
     font-size: 13px;
     transform: scale3d(1.05, 1.05, 1);
     cursor: pointer;
-}
-
-#next__btn {
-    width: 100px;
-    align-self: center;
-    margin-bottom: 50px;
 }

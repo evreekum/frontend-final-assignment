@@ -1,14 +1,9 @@
 import React from "react";
-import {useForm} from "react-hook-form";
 import "./SelectOptions.css";
-// import {useHistory} from "react-router-dom";
+
 function SelectOptions({type, name, value, onChange, children}) {
 
-    // const {register} = useForm();
-    // const history = useHistory();
-
     return (
-
             <label htmlFor={`${type}__select`}>
                 <select
                     id={`${type}__select`}
@@ -22,7 +17,6 @@ function SelectOptions({type, name, value, onChange, children}) {
                     {children}
                 </select>
             </label>
-    // {...register(`${name}`)}
     )
 }
 export default SelectOptions;

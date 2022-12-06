@@ -1,7 +1,5 @@
 import React, {useEffect, useState} from "react";
 import "../../App.css";
-import {useForm} from "react-hook-form";
-import InputFieldUseForm from "../../components/inputfield/InputFieldUseForm";
 import Button from "../../components/button/Button";
 import TabTitle from "../../helpers/TabTitle";
 import "./CalculatorPage.css";
@@ -23,7 +21,6 @@ function CalculatorPage() {
     const [carbs, setCarbs] = useState(0);
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
-
 
     async function fetchProductData(product) {
         toggleError(false);
@@ -56,9 +53,7 @@ function CalculatorPage() {
         console.log("Product useEffect:",);
         if(product) {
             fetchProductData(product);
-
         }
-
     }, []);
 
     function onFormSubmitAmount(amount) {
@@ -103,7 +98,6 @@ function CalculatorPage() {
                         value={product}
                         placeholder="Product"
                         onChange={(e) => setProduct(e.target.value)}
-
                     />
                     <Button
                         type="submit"
@@ -151,7 +145,6 @@ function CalculatorPage() {
                         placeholder="Amount"
                         onChange={(e) => setAmount(e.target.value)}
                     />
-
                     <label htmlFor="add__btn">Serving(s)</label>
                     <Button
                         type="submit"
@@ -185,7 +178,6 @@ function CalculatorPage() {
                         })
                     })}
                     {Object.keys(calculator).length > 0 &&
-
                         <tr key="total-calc">
                             <td><strong>Total</strong></td>
                             <td></td>

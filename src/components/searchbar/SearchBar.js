@@ -1,18 +1,16 @@
 import React, {useEffect, useState} from "react";
-// import {useForm} from "react-hook-form";
 import SelectOptions from "../select/SelectOptions";
 import Button from "../button/Button";
-import InputFieldUseForm from "../inputfield/InputFieldUseForm";
 import "./SearchBar.css";
 import "../../App.css";
 import axios from "axios";
 import RecipeCard from "../recipecard/RecipeCard";
+import InputFieldRegular from "../inputfield/InputFieldRegular";
 
 const apiKey = process.env.REACT_APP_API_KEY_HOME;
 const apiId = process.env.REACT_APP_API_ID_HOME;
 
 function SearchBar() {
-    // const {search} = useParams();
     const [search, setSearch] = useState("");
     const [mealType, setMealType] = useState("");
     const [cuisine, setCuisine] = useState("");
@@ -33,17 +31,20 @@ function SearchBar() {
         console.log(recipesUrl);
     }
 
-
-    // function updateMessage() {
-    //     onFormSubmit();
-    //     setUpdated(search);
-    // }
+    useEffect(() => {
+        console.log("useEffect 1");
+        if(search) {
+            fetchData();
+        }
+    }, []);
 
     useEffect(() => {
-        fetchData();
-        console.log("useEffect")
+        console.log("useEffect 2")
+        if(recipesUrl) {
+            fetchData();
+        }
+    }, [recipesUrl]);
 
-    }, [recipesUrl, search]);
 
     function onFormSubmit(e) {
         e.preventDefault();
@@ -52,11 +53,19 @@ function SearchBar() {
         fetchData();
         setSearch("");
         setUpdated(search);
-
     }
 
-    async function fetchData() {
+    // useEffect(() => {
+    //     const controller = new AbortController();
+    //     fetchData();
+    //     console.log("useEffect 3");
+    //     return () => {
+    //         controller.abort();
+    //     };
+    //
+    // }, []);
 
+    async function fetchData() {
 
         try {
             const response = await axios.get(recipesUrl, {
@@ -92,25 +101,18 @@ function SearchBar() {
 
     }
 
-    // useEffect(() => {
-    //     const controller = new AbortController();
-    //
-    //     return() => controller.abort();
-    // }, []);
-
     return (
         <>
 
             <div className="searchbar__outer-container outer-container">
 
                 <form className="searchbar__inner-container inner-container" onSubmit={(onFormSubmit)}>
-                    <InputFieldUseForm
-                        name="search"
+                    <InputFieldRegular
                         type="search"
-                        placeholder="Recipe Search"
+                        name="search"
                         value={search}
+                        placeholder="Recipe Search"
                         onChange={(e) => setSearch(e.target.value)}
-
                     />
                     <SelectOptions
                         type="meal-type"
@@ -197,13 +199,13 @@ function SearchBar() {
 
                 <div className="searchbar__count">
                     <p><strong>{count}</strong> recipes found for <strong>{updated}</strong></p>
-                    <p>From: <strong>{from}</strong> To: <strong>{to}</strong></p>
+                    <p>Results <strong>{from}</strong> to <strong>{to}</strong></p>
                 </div>
 
 
                 <ul className="recipe-card-results__ul">
 
-                    {recipes.map((recipe) => (
+                    {Object.keys(recipes).length > 0 && recipes.map((recipe) => (
                         <RecipeCard
                             key={recipe.recipe.url}
                             id={recipe.recipe.uri.split("_")[1]}

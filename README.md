@@ -22,7 +22,7 @@ It also has the ability to search for the calorie count and nutrients of product
 -----------
 The application is build up out of the following features:
 
-Navigation:
+NavBar:
 <br>
 Every page has a navigation-bar where you can easily navigate between the different pages and functions.
 <br>

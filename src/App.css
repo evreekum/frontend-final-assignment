@@ -16,14 +16,14 @@
     box-sizing: border-box;
 }
 
-/*----Temporary borders----*/
-/*.outer-container {*/
-/*    border: 1px solid green;*/
-/*}*/
-/*.inner-container {*/
-/*    border: 1px solid red;*/
-/*}*/
-/*_______________________________*/
+/*----Temporary borders----
+.outer-container {
+    border: 1px solid green;
+}
+.inner-container {
+    border: 1px solid red;
+}
+_______________________________*/
 body {
     font-family: "poppins", sans-serif;
     background-color: white;
@@ -31,7 +31,6 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-
 }
 
 .outer-container {
@@ -40,8 +39,6 @@ body {
     flex-direction: column;
     justify-content: center;
     align-content: center;
-
-
 }
 
 .inner-container {
@@ -54,7 +51,6 @@ body {
     align-self: center;
     width: var(--inner-width);
     max-width: var(--max-width);
-
 }
 
 ul {

@@ -48,3 +48,14 @@ h2:hover {
     text-decoration: underline;
     font-size: 15px;
 }
+
+.auth__btn {
+    width: fit-content;
+    align-self: center;
+    padding: 0 15px 0 15px;
+}
+
+.auth__btn::after {
+    content: "";
+    padding-left: 0;
+}

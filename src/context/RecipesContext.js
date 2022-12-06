@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from "react";
 import axios from "axios";
-import InputFieldUseForm from "../components/inputfield/InputFieldUseForm";
+import InputFieldRegister from "../components/inputfield/InputFieldRegister";
 import SelectOptions from "../components/select/SelectOptions";
 import Button from "../components/button/Button";
 import RecipeCard from "../components/recipecard/RecipeCard";
@@ -81,7 +81,7 @@ function RecipesContext() {
             <div className="searchbar__outer-container outer-container">
                 {/*Using react-hook-form*/}
                 <form className="searchbar__inner-container inner-container" onSubmit={handleSubmit(onFormSubmit)}>
-                    <InputFieldUseForm
+                    <InputFieldRegister
                         name="search"
                         register={register}
                         validationObject={{required: "Fill in an ingredient"}}
