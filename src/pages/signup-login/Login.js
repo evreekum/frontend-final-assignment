@@ -34,7 +34,8 @@ function Login() {
         <main className="signup__outer-container outer-container">
             <div className="signup__inner-container inner-container">
                 <h4>login</h4>
-
+                <p>The Calorie Calculator is a feature only available to members with an account.</p>
+                <p>Please login to get access now!</p>
                 <form className="signup__form" onSubmit={handleSubmit(onFormSubmit)}>
                     <fieldset>
                         <legend>Personal details:</legend>
