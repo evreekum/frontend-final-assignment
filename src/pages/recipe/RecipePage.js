@@ -6,7 +6,6 @@ import "../../components/recipecard/RecipeCard.css";
 import "./RecipePage.css";
 import TabTitle from "../../helpers/TabTitle";
 
-
 const apiKey = process.env.REACT_APP_API_KEY_HOME;
 const apiId = process.env.REACT_APP_API_ID_HOME;
 
@@ -16,9 +15,9 @@ function RecipePage() {
     const [recipe, setRecipe] = useState({});
     const [ingredients, setIngredients] = useState([]);
     const [healthLabels, setHealthLabels] = useState([]);
-    // const [nutrients, setNutrients] = useState([]);
+    const [error, toggleError] = useState(false);
+    const [loading, toggleLoading] = useState(false);
     TabTitle(`${recipe.label}`);
-
 
     useEffect(() => {
         fetchRecipeData();
@@ -26,7 +25,8 @@ function RecipePage() {
 
 
     async function fetchRecipeData() {
-
+        toggleError(false);
+        toggleLoading(true);
         try {
             const response = await axios.get(`https://api.edamam.com/api/recipes/v2/${id}`, {
                 headers: {
@@ -38,8 +38,6 @@ function RecipePage() {
                     app_id: apiId,
                 }
             });
-            console.log("Response:", response.data.recipe.ingredientLines);
-
             const fetchRecipe = response.data.recipe;
             const fetchIngredients = fetchRecipe.ingredientLines;
             const fetchHealthLabels = fetchRecipe.healthLabels;
@@ -50,8 +48,9 @@ function RecipePage() {
 
         } catch (error) {
             console.error(error);
+            toggleError(true);
         }
-        // fetchRecipeData();
+        toggleLoading(false);
     }
 
 
@@ -64,8 +63,6 @@ function RecipePage() {
                             <h4>{recipe.label}</h4>
                             <p><img className="clock-icon__svg" src={ClockIcon}
                                     alt="Clock Icon"/><strong>{recipe.totalTime}</strong> min </p>
-
-                            {/*<p><ClockIcon classname="clock-icon__svg" alt="Clock Icon"/>{recipe.totalTime} min </p>*/}
                         </div>
 
                         <p className="recipe-page__instructions">
@@ -97,8 +94,6 @@ function RecipePage() {
                             Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a,
                             ultricies in,
                             diam. Sed arcu. Cras consequat.
-
-
                         </p>
                         <a className="recipe-page__original-link" href={recipe.url} target="_blank"
                            rel="nofollow, noopener, noreferrer">Click here for the original recipe</a>
@@ -110,10 +105,8 @@ function RecipePage() {
                         <section className="recipe-page__ingredients">
                             <h5>ingredients</h5>
                             <ul>
-                                {ingredients.length && ingredients.map((ingredient) => (
-
-                                    <li key={ingredients.foodId}>{ingredient}</li>
-
+                                {ingredients.length && ingredients.map((ingredient, index) => (
+                                    <li key={index}>{ingredient}</li>
                                 ))}
                             </ul>
                         </section>
@@ -200,9 +193,9 @@ function RecipePage() {
                     <section>
                         <h5>health labels</h5>
                         <ul className="recipe-page__health-label">
-                            {healthLabels.map((healthLabel) => (
+                            {healthLabels.map((healthLabel, index) => (
 
-                                <li key={recipe.totalDaily[0]}
+                                <li key={index}
                                     className="recipe-page__health-label__li">{healthLabel}</li>
 
                             ))}

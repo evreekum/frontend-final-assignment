@@ -23,7 +23,8 @@ function SearchBar() {
     const [from, setFrom] = useState(0);
     const [to, setTo] = useState(0);
     const [updated, setUpdated] = useState(search);
-
+    const [error, toggleError] = useState(false);
+    const [loading, toggleLoading] = useState(false);
 
     function nextClick() {
         setRecipesUrl(allData.next.href);
@@ -33,18 +34,17 @@ function SearchBar() {
 
     useEffect(() => {
         console.log("useEffect 1");
-        if(search) {
+        if (search) {
             fetchData();
         }
     }, []);
 
     useEffect(() => {
         console.log("useEffect 2")
-        if(recipesUrl) {
+        if (recipesUrl) {
             fetchData();
         }
     }, [recipesUrl]);
-
 
     function onFormSubmit(e) {
         e.preventDefault();
@@ -55,20 +55,12 @@ function SearchBar() {
         setUpdated(search);
     }
 
-    // useEffect(() => {
-    //     const controller = new AbortController();
-    //     fetchData();
-    //     console.log("useEffect 3");
-    //     return () => {
-    //         controller.abort();
-    //     };
-    //
-    // }, []);
-
     async function fetchData() {
-
+        toggleError(false);
+        toggleLoading(true);
         try {
             const response = await axios.get(recipesUrl, {
+                mode: "onSubmit",
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -97,15 +89,14 @@ function SearchBar() {
 
         } catch (error) {
             console.error(error);
+            toggleError(true);
         }
-
+        toggleLoading(false);
     }
 
     return (
         <>
-
             <div className="searchbar__outer-container outer-container">
-
                 <form className="searchbar__inner-container inner-container" onSubmit={(onFormSubmit)}>
                     <InputFieldRegular
                         type="search"
@@ -127,7 +118,6 @@ function SearchBar() {
                         <option value="snack">Snack</option>
                         <option value="teatime">Teatime</option>
                     </SelectOptions>
-
                     <SelectOptions
                         type="cuisine"
                         name="cuisineType"
@@ -156,7 +146,6 @@ function SearchBar() {
                         <option value="south east asian">south east asian</option>
                         <option value="world">world</option>
                     </SelectOptions>
-
                     <SelectOptions
                         type="diet"
                         name="diet"
@@ -170,7 +159,6 @@ function SearchBar() {
                         <option value="low-fat">low-fat</option>
                         <option value="low-sodium">low-sodium</option>
                     </SelectOptions>
-
                     <SelectOptions
                         type="Time"
                         name="time"
@@ -187,24 +175,19 @@ function SearchBar() {
                         <option value="105-120">105-120 min</option>
                         <option value="120+">120+ min</option>
                     </SelectOptions>
-
                     <Button
                         type="submit"
                         title="search"
-
                     />
                 </form>
             </div>
             <div className="outer-container">
-
                 <div className="searchbar__count">
                     <p><strong>{count}</strong> recipes found for <strong>{updated}</strong></p>
                     <p>Results <strong>{from}</strong> to <strong>{to}</strong></p>
                 </div>
 
-
                 <ul className="recipe-card-results__ul">
-
                     {Object.keys(recipes).length > 0 && recipes.map((recipe) => (
                         <RecipeCard
                             key={recipe.recipe.url}
@@ -216,18 +199,18 @@ function SearchBar() {
                             time={recipe.recipe.totalTime}
                         />
                     ))}
-
                 </ul>
-                <Button
+
+                {Object.keys(allData).length > 0 &&
+                    <Button
                     type="button"
                     title="next"
                     onClick={nextClick}
-                    disabled={!allData.next}
-                />
+                    disabled={!allData}
+                />}
+
             </div>
         </>
-
-
     )
 }
 

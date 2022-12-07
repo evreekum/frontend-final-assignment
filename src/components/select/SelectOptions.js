@@ -11,9 +11,7 @@ function SelectOptions({type, name, value, onChange, children}) {
                     value={value}
                     onChange={onChange}
                 >
-                    {/*<option value="" disabled placeholder={type}>{type}</option>*/}
-                    {/*<option disabled value defaultValue={type}>{type}</option>*/}
-                    <option value="" disabled selected>{type}</option>
+                    <option value="" disabled placeholder={type}>{type}</option>
                     {children}
                 </select>
             </label>

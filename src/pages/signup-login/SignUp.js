@@ -20,7 +20,8 @@ function SignUp() {
             const response = await axios.post(`https://frontend-educational-backend.herokuapp.com/api/auth/signup`, {
                 username: data.username,
                 password: data.password,
-                email: data.email
+                email: data.email,
+                role: [data.user]
             })
             console.log(response);
             history.push("/login");

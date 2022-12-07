@@ -26,7 +26,6 @@ function CalculatorPage() {
         toggleError(false);
         toggleLoading(true);
         try {
-
             const response = await axios.get(`https://api.edamam.com/api/food-database/v2/parser`, {
                 mode: "onSubmit",
                 params: {
@@ -35,7 +34,7 @@ function CalculatorPage() {
                     app_key: apiKeyCalc,
                     ingr: product
                 }
-            })
+            });
             console.log("Result:", response.data);
             const productHints = response.data.hints[0];
             console.log("Hints:", response.data.hints[0], productHints);
@@ -57,9 +56,7 @@ function CalculatorPage() {
     }, []);
 
     function onFormSubmitAmount(amount) {
-
         setCalculator([...calculator, [foundProduct, amount]]);
-
 
         let newCalories = 0;
         Object.values(foundProduct).map((calculate) => newCalories += calculate.food.nutrients.ENERC_KCAL * amount);
@@ -74,7 +71,6 @@ function CalculatorPage() {
         setCarbs(carbs => carbs + newCarbs);
 
         setFoundProduct([]);
-
     }
 
     useEffect(() => {
@@ -128,7 +124,6 @@ function CalculatorPage() {
                         </tr>
                     ))
                     }
-
                     </tbody>
                 </table>
 
@@ -139,7 +134,7 @@ function CalculatorPage() {
                 }}>
                     <label htmlFor="amount__field">Amount</label>
                     <InputFieldRegular
-                        type="text"
+                        type="number"
                         name="amount"
                         value={amount}
                         placeholder="Amount"
@@ -152,7 +147,9 @@ function CalculatorPage() {
                         className="calc-amount__btn"
                     />
                 </form>
-
+                {amount.length === 0 && error &&
+                    <p className="error-message">This field can't be empty. Please fill in an amount and try again.</p>}
+                {loading && <p className="loading-message">Loading...</p>}
                 <table>
                     <thead>
                     <tr>
@@ -188,9 +185,7 @@ function CalculatorPage() {
                     }
                     </tbody>
                 </table>
-
             </div>
-
         </main>
     )
 }
