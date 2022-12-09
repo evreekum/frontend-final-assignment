@@ -1,47 +1,53 @@
-import React from "react";
+import React, {useContext, useState} from "react";
+import TabTitle from "../../helpers/TabTitle";
 import {useForm} from "react-hook-form";
-import {useHistory} from "react-router-dom";
 import axios from "axios";
 import InputFieldRegister from "../../components/inputfield/InputFieldRegister";
-import "./SignUp.css";
 import Button from "../../components/button/Button";
-import TabTitle from "../../helpers/TabTitle";
+import {AuthContext} from "../../context/AuthContext";
+import {Link} from "react-router-dom";
+import "./SignUp-Login.css";
 
-function SignUp() {
-    TabTitle("Sign Up");
-    const history = useHistory();
+function LoginPage() {
+    TabTitle("Login");
+    const {login} = useContext(AuthContext);
     const {handleSubmit, register, formState: {errors}} = useForm({
         mode: "onBlur"
     });
+    const [error, toggleError] = useState(false);
+    const [loading, toggleLoading] = useState(false);
 
     async function onFormSubmit(data) {
-        console.log(data);
+        toggleError(false);
+        toggleLoading(true);
         try {
-            const response = await axios.post(`https://frontend-educational-backend.herokuapp.com/api/auth/signup`, {
+            const response = await axios.post(`https://frontend-educational-backend.herokuapp.com/api/auth/signin`, {
                 username: data.username,
-                password: data.password,
-                email: data.email,
-                role: [data.user]
-            })
-            console.log(response);
-            history.push("/login");
-        } catch (e) {
-            console.error(e);
+                password: data.password
+            });
+            login(response.data);
+            // console.log(response.data);
+        } catch (error) {
+            console.error(error);
+            toggleError(true);
         }
+        toggleLoading(false);
     }
 
     return (
-        <main className="signup__outer-container outer-container">
-            <div className="signup__inner-container inner-container">
-                <h4>Sign Up</h4>
+        <main className="signup-login__outer-container outer-container">
+            <div className="signup-login__inner-container inner-container">
+                <h4>login</h4>
                 <p>The Calorie Calculator is a feature only available to members with an account.</p>
-                <p>Please sign up and login to get access now!</p>
+                <p>Please login to get access now!</p>
 
-                <form className="signup__form" onSubmit={handleSubmit(onFormSubmit)}>
+                {loading && <span><p className="loading-message">Loading...</p></span>}
+
+                <form className="signup-login__form" onSubmit={handleSubmit(onFormSubmit)}>
                     <fieldset>
                         <legend>Personal details:</legend>
                         <InputFieldRegister
-                            label="Choose a username:"
+                            label="Type in your username:"
                             register={register}
                             name="username"
                             validationObject={{
@@ -54,10 +60,10 @@ function SignUp() {
                             type="username"
                             placeholder="Username"
                             errors={errors}
-                            className="signup__input"
+                            className="signup-login__input"
                         />
                         <InputFieldRegister
-                            label="Choose a password:"
+                            label="Type in your password:"
                             register={register}
                             name="password"
                             validationObject={{
@@ -70,34 +76,19 @@ function SignUp() {
                             type="text"
                             placeholder="Password"
                             errors={errors}
-                            className="signup__input"
+                            className="signup-login__input"
                         />
-                        <InputFieldRegister
-                            label="Your e-mail address:"
-                            register={register}
-                            name="email"
-                            validationObject={{
-                                required: "E-mail can't be empty",
-                                pattern: {
-                                    value: /@\w+/g,
-                                    message: "E-mail must include @",
-                                }
-                            }}
-                            type="email"
-                            placeholder="E-mail"
-                            errors={errors}
-                            className="signup__input"
-                        />
+                        {error && <span><p className="error-message">The username or password is incorrect. <br/>Please try again <br/>or sign up by following the link below.</p></span>}
                         <Button
                             type="submit"
-                            title="sign up"
+                            title="login"
                             className="auth__btn"
                         />
+                        <p className="signup__link">Not a member yet? <Link id="signup__link-link" to="/signup">Sign up here</Link></p>
                     </fieldset>
                 </form>
             </div>
         </main>
     )
 }
-
-export default SignUp;
+export default LoginPage;

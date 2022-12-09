@@ -4,11 +4,11 @@ import {useParams} from "react-router-dom";
 import ClockIcon from "../../assets/icons/time.png";
 import "../../components/recipecard/RecipeCard.css";
 import "./RecipePage.css";
+import "../../App.css";
 import TabTitle from "../../helpers/TabTitle";
 
 const apiKey = process.env.REACT_APP_API_KEY_HOME;
 const apiId = process.env.REACT_APP_API_ID_HOME;
-
 
 function RecipePage() {
     const {id} = useParams();
@@ -22,7 +22,6 @@ function RecipePage() {
     useEffect(() => {
         fetchRecipeData();
     }, [id]);
-
 
     async function fetchRecipeData() {
         toggleError(false);
@@ -44,8 +43,6 @@ function RecipePage() {
             setRecipe(fetchRecipe);
             setIngredients(fetchIngredients);
             setHealthLabels(fetchHealthLabels);
-            console.log("FetchRecipe:", fetchRecipe);
-
         } catch (error) {
             console.error(error);
             toggleError(true);
@@ -53,17 +50,20 @@ function RecipePage() {
         toggleLoading(false);
     }
 
-
     return (
         <main className="recipe-page__outer-container outer-container">
             {Object.keys(recipe).length > 0 &&
                 <article className="recipe-page__inner-container inner-container">
                     <section className="recipe-page__description">
+
                         <div className="recipe-page__title">
                             <h4>{recipe.label}</h4>
-                            <p><img className="clock-icon__svg" src={ClockIcon}
-                                    alt="Clock Icon"/><strong>{recipe.totalTime}</strong> min </p>
+                            <p className="recipe-page__time"><img className="clock-icon__svg" src={ClockIcon}
+                                    alt="Clock Icon"/><strong>{recipe.totalTime}</strong>min</p>
                         </div>
+
+                        {loading && <span><p className="loading-message">Loading...</p></span>}
+                        {error && <span><p className="error-message">Something went wrong. Please return to the Home page and try again.</p></span>}
 
                         <p className="recipe-page__instructions">
                             Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat
@@ -111,9 +111,9 @@ function RecipePage() {
                             </ul>
                         </section>
 
-                        <section className="recipe-page__nutrients">
+                        <section>
                             <h5>nutrients</h5>
-                            <table className="recipe-page__nutrients-table">
+                            <table>
                                 <tbody>
                                 <tr>
                                     <td className="recipe-nutrients__row-1"></td>
@@ -130,7 +130,6 @@ function RecipePage() {
                                     <td className="recipe-nutrients__row-3">g</td>
                                 </tr>
                                 <tr>
-
                                     <td className="recipe-nutrients__row-1">{recipe.totalNutrients.ENERC_KCAL.label}
                                     </td>
                                     <td className="recipe-nutrients__row-2">{Math.round(recipe.totalNutrients.ENERC_KCAL.quantity)}
@@ -194,10 +193,8 @@ function RecipePage() {
                         <h5>health labels</h5>
                         <ul className="recipe-page__health-label">
                             {healthLabels.map((healthLabel, index) => (
-
                                 <li key={index}
                                     className="recipe-page__health-label__li">{healthLabel}</li>
-
                             ))}
                         </ul>
                     </section>
@@ -206,5 +203,4 @@ function RecipePage() {
         </main>
     )
 }
-
 export default RecipePage;

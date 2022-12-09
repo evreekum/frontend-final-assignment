@@ -1,0 +1,60 @@
+.signup-login__outer-container {
+    min-height: 74vh;
+}
+
+.signup-login__inner-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 35px;
+}
+
+.signup-login__form {
+    display: flex;
+    flex-direction: column;
+}
+
+.signup-login__input {
+    border: 1px solid grey;
+    height: 22px;
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+    width: 200px;
+}
+
+.error-message {
+    margin-top: 5px;
+}
+
+.username__label,
+.email__label,
+.password__label {
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+.signup__link {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+#signup__link-link::before {
+    content: "➜︎";
+    display: inline-block;
+    padding: 0 5px;
+}
+
+#signup__link-link:hover {
+    text-decoration: underline;
+}
+
+.auth__btn {
+    width: fit-content;
+    padding: 0 15px 0 15px;
+}
+
+.auth__btn::after {
+    content: "";
+    padding-left: 0;
+}

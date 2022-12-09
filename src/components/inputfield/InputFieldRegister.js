@@ -12,9 +12,8 @@ function InputFieldRegister({label, register, name, validationObject, type, plac
                 placeholder={placeholder}
                 className={className}
             />
-            {errors[name] && <p className="error-message">{errors[name].message}</p>}
+            {errors[name] && <span><p className="error-message">{errors[name].message}</p></span>}
         </label>
     )
 }
-
 export default InputFieldRegister;

@@ -1,7 +1,7 @@
 import React from "react";
 import "./InputField.css";
 
-function InputFieldRegular({type, name, value, placeholder, onChange}) {
+function InputFieldRegular({type, name, value, placeholder, onChange, min}) {
 
     return (
             <input
@@ -11,6 +11,7 @@ function InputFieldRegular({type, name, value, placeholder, onChange}) {
                 placeholder={placeholder}
                 onChange={onChange}
                 id={`${name}__field`}
+                min={min}
             />
     )
 }

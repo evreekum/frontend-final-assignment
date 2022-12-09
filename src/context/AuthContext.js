@@ -6,7 +6,7 @@ export const AuthContext = createContext({});
 
 function AuthContextProvider({children}) {
     const history = useHistory();
-    const [isAuth, setIsAuth] = useState({
+    const [auth, setAuth] = useState({
         isAuth: false,
         user: null,
         status: "pending",
@@ -14,10 +14,10 @@ function AuthContextProvider({children}) {
 
     useEffect(() => {
         const token = localStorage.getItem("token");
-        if(token) {
+        if (token) {
             fetchUserData(token);
         } else {
-            setIsAuth({
+            setAuth({
                 isAuth: false,
                 user: null,
                 status: "done",
@@ -34,10 +34,8 @@ function AuthContextProvider({children}) {
                     Authorization: `Bearer ${token}`,
                 }
             });
-            console.log(response.data);
-
-            setIsAuth({
-                ...isAuth,
+            setAuth({
+                ...auth,
                 isAuth: true,
                 user: {
                     username: response.data.username,
@@ -47,8 +45,7 @@ function AuthContextProvider({children}) {
                 },
                 status: "done"
             })
-
-        } catch(e) {
+        } catch (e) {
             console.error(e);
             localStorage.clear();
         }
@@ -57,8 +54,8 @@ function AuthContextProvider({children}) {
     function login(data) {
         console.log(data);
         localStorage.setItem("token", data.accessToken);
-        setIsAuth({
-            ...isAuth,
+        setAuth({
+            ...auth,
             isAuth: true,
             user: {
                 username: data.username,
@@ -74,7 +71,7 @@ function AuthContextProvider({children}) {
 
     function logout() {
         localStorage.clear();
-        setIsAuth({
+        setAuth({
             isAuth: false,
             user: null,
             status: "done",
@@ -84,16 +81,16 @@ function AuthContextProvider({children}) {
     }
 
     const authContextData = {
-        isAuth: isAuth,
-        user: isAuth.user,
+        isAuth: auth.isAuth,
+        user: auth.user,
         login: login,
         logout: logout
     }
     return (
         <AuthContext.Provider value={authContextData}>
-            {isAuth.status === "done" ? children : <p>Loading...</p>}
+            {auth.status === "done" ? children : <p className="loading-message">Loading...</p>}
         </AuthContext.Provider>
     )
-};
+}
 
 export default AuthContextProvider;

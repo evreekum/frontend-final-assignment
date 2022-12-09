@@ -7,40 +7,36 @@ import CalculatorPage from "./pages/calculator/CalculatorPage";
 import Footer from "./components/footer/Footer";
 import RecipePage from "./pages/recipe/RecipePage";
 import {AuthContext} from "./context/AuthContext";
-import SignUp from "./pages/signup-login/SignUp";
-import Login from "./pages/signup-login/Login";
-
+import SignUpPage from "./pages/signup-login/SignUpPage";
+import LoginPage from "./pages/signup-login/LoginPage";
 
 function App() {
     const {isAuth} = useContext(AuthContext);
     return (
-        <>
-            <div className="outer-container">
-                <NavBar/>
+        <div className="outer-container">
+            <NavBar/>
 
-                <Switch>
-                    <Route exact path="/">
-                        <HomePage/>
-                    </Route>
-                    <Route path="/recipe/:id">
-                        <RecipePage/>
-                    </Route>
-                    <Route path="/calculator">
-                        {isAuth.isAuth ? <CalculatorPage/> : <Redirect to="/login"/>}
-                    </Route>
-                    <Route exact path="/signup">
-                        <SignUp/>
-                    </Route>
-                    <Route path="/login">
-                        <Login/>
-                    </Route>
-                </Switch>
+            <Switch>
+                <Route exact path="/">
+                    <HomePage/>
+                </Route>
+                <Route path="/recipe/:id">
+                    <RecipePage/>
+                </Route>
+                <Route path="/calculator">
+                    {isAuth ? <CalculatorPage/> : <Redirect to="/login"/>}
+                </Route>
+                <Route exact path="/signup">
+                    <SignUpPage/>
+                </Route>
+                <Route path="/login">
+                    <LoginPage/>
+                </Route>
+            </Switch>
 
-                <Footer/>
+            <Footer/>
+        </div>
 
-            </div>
-        </>
     );
 }
-
 export default App;
