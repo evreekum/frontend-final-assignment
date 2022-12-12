@@ -33,9 +33,8 @@ To get access you sign up and login!
 
 -----------
 The application is build up out of the following features:
-
-<u>NavBar:</u>
 <br>
+<h5><u>NavBar:</u></h5>
 Every page has a navigation-bar where you can easily navigate between the different pages and functions.
 <br>
 Clicking on the logo 'The Clueless Cook' and on 'Home' will bring you back to the homepage.
@@ -45,8 +44,7 @@ Clicking 'About' brings you to the footer with the about-information of this web
 Clicking 'Calculator' will bring you to the 'Calculator' page.
 
 
-<u>Homepage:</u>
-<br>
+<h5><u>Homepage:</u></h5>
 The header of the homepage always features some random recipes as a suggestion. You can directly go to the recipe-page by clicking on it.
 
 In the main of the homepage you can search for recipes by typing your desired ingredient(s) in the "Recipe search" field. You can put in multiple ingredients using a ',' to distinguish the separate ingredients.
@@ -62,29 +60,25 @@ This way your search results will remain open on the homepage.
 At the bottom of the results list you find a button 'Next'. Clicking on it will bring you to the next 20 results found.
 
 
-<u>Recipe-page:</u>
-<br>
+<h5><u>Recipe-page:</u></h5>
 The recipe-page features all the information needed to prepare the recipe ie. ingredients, etc..
 It also shows you the nutrients of the recipe and the health labels associated with the recipe.
 You can find the link to the original recipe source at the bottom of the description, the ➜︎ points at the link.
 
 
-<u>Calculator-page:</u>
-<br>
+<h5><u>Calculator-page:</u></h5>
 The Calorie Calculator lets you find products and their calories, fat, and carbohydrates content. You can add different products together that add up and give you the total amount of calories, fat and carbohydrates.
 This feature is only available to members with an account. To access sign up and login.
 
-<u>Sign Up-page:</u>
-<br>
+<h5><u>Sign Up-page:</u></h5>
 The sign up- page asks the user to fill in their email address and make up a 'Username' and 'Password'. 
 After signing up the user gets redirected to the login-page.
 
-<u>Login-page:</u>
-<br>
+<h5><u>Login-page:</u></h5>
 The login-page lets the user login. When successful the user is redirected to the Calculator-page.
 <br>
-<br>
-<u>Homepage preview:</u><br>
+
+<h5><u>Homepage preview:</u></h5>
 ![home-preview-new.png](src%2Fassets%2Fimages%2Fhome-preview-new.png)
 
 <br>
@@ -93,8 +87,7 @@ The login-page lets the user login. When successful the user is redirected to th
 <h3>3. <strong><u>Installation</u></strong></h3>
 
 ---------------
-<strong>Step 1</strong> -   <u>Download and Install an IDE.</u>
-<br>
+<h4><strong>Step 1</strong> -   <u>Download and Install an IDE.</u></h4>
 To be able to run this project you will have to download an IDE like Webstorm.
 <br>
 Follow the link below to download Webstorm for macOS, Windows or Linux:
@@ -104,15 +97,13 @@ https://www.jetbrains.com/webstorm/download/#section=mac
 This application is build with Create React App.
 
 <br>
-<strong>Step 2</strong> -   <u>Open Terminal</u>
-<br>
+<h4><strong>Step 2</strong> -   <u>Open Terminal</u></h4>
 You can find the 'Terminal' at the bottom of the Webstorm screen (between 'Problems' and 'Services').
 
 Click on it to open.
 
 <br>
-<strong>Step 3</strong> - <u>Installing dependencies & development dependencies.</u>
-<br>
+<h4><strong>Step 3</strong> - <u>Installing dependencies & development dependencies.</u></h4>
 This application uses a couple of dependencies that are not standard in a React App. 
 To use them we need to install them first. 
 
@@ -187,8 +178,7 @@ Install React by typing the following command in the terminal:
 
 
 <br>
-<strong>Step 4</strong> - <u>API access</u>
-<br>
+<h4><strong>Step 4</strong> - <u>API access</u></h4>
 This application uses the API from Edamam.com. 
 There's multiple options this API provides. 
 This application uses the following APIs from Edamam:
@@ -211,8 +201,7 @@ REACT_APP_API_ID_CALCULATOR= your <u>app_id</u> from <u>Food Database API</u><br
 (You will find my app_key and app_id in the enclosed PDF file.)
 
 <br>
-<strong>Step 5</strong> - <u>Run the application</u>
-<br>
+<h4><strong>Step 5</strong> - <u>Run the application</u></h4>
 Run the application by typing the following command in the terminal:
 
 <code>npm run start</code> then press enter *
