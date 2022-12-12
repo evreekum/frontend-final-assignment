@@ -85,7 +85,7 @@ The login-page lets the user login. When successful the user is redirected to th
 <br>
 <br>
 <u>Homepage preview:</u><br>
-![home-preview-new.png](/Users/eve/WebstormProjects/frontend-final-assignment/src/assets/images/home-preview-new.png)
+![home-preview-new.png](src%2Fassets%2Fimages%2Fhome-preview-new.png)
 
 <br>
 
