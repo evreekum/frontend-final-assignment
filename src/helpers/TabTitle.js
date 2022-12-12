@@ -5,5 +5,4 @@ function TabTitle(newTitle) {
         document.title = newTitle
     )
 }
-
 export default TabTitle;

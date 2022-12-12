@@ -30,7 +30,7 @@ function SearchBar() {
 
     function nextClick() {
         setRecipesUrl(allData.next.href);
-        window.scrollTo({top: 550, left: 0, behavior: "smooth"})
+        window.scrollTo({top: 790, left: 0, behavior: "smooth"})
     }
 
     useEffect(() => {
@@ -181,11 +181,11 @@ function SearchBar() {
             <div className="outer-container">
                 {error &&
                     <span><p className="error-message">Something went wrong. Refresh the page and try again.</p></span>}
-                {loading && <span><p className="loading-message">Loading...</p></span>}
+                {loading && <div className="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>}
+
                 {Object.keys(updatedSearch).length > 0 &&
                     <div className="searchbar__count">
-                        <p><strong>{count}</strong> recipes found for <strong>{updatedSearch}</strong>
-                            <strong>{updatedCuisine}</strong> <strong>{updatedMealType}</strong></p>
+                        <p><strong>{count}</strong> recipes found for <strong>{updatedSearch}</strong> <strong>{updatedCuisine}</strong> <strong>{updatedMealType}</strong></p>
                         <p>Results <strong>{from}</strong> to <strong>{to}</strong></p>
                     </div>
                 }

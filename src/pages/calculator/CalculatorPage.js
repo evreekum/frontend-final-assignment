@@ -112,7 +112,7 @@ function CalculatorPage() {
                             <p className="error-message">This field can't be empty. Please fill in an ingredient or
                                 product
                                 and try again.</p>}
-                        {loading && <p className="loading-message">Looking for product...</p>}
+                        {loading && <p className="loading-message">Searching...</p>}
 
                         <table className="calc__table">
                             <thead>
@@ -152,7 +152,6 @@ function CalculatorPage() {
                             <Button
                                 type="submit"
                                 title="add"
-                                className="calc-amount__btn"
                             />
                         </form>
 

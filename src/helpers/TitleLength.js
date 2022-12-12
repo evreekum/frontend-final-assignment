@@ -7,5 +7,4 @@ function TitleLength(title) {
         return title.substring(0,44) + "...";
     }
 }
-
 export default TitleLength;

@@ -19,7 +19,6 @@ body {
     font-family: "poppins", sans-serif;
     background-color: white;
     color: var(--main-font-color);
-    /*min-height: 100vh;*/
     display: flex;
     flex-direction: column;
 }
@@ -118,11 +117,21 @@ legend {
      text-align: center;
      padding: 10px 0;
  }
+.error-message:before {
+    content: "*";
+}
 
 .loading-message {
-    font-size: 16px;
-    font-weight: 600;
-    color: green;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--main-font-color);
     text-align: center;
     margin-top: 50px;
+    border: 1px solid var(--dark-bg-font-color);
+    background-color: var(--button-color);
+    border-radius: 4px;
+    width: fit-content;
+    align-self: center;
+    justify-self: center;
+    padding: 0 10px;
 }

@@ -26,7 +26,6 @@ function LoginPage() {
                 password: data.password
             });
             login(response.data);
-            // console.log(response.data);
         } catch (error) {
             console.error(error);
             toggleError(true);
@@ -41,7 +40,7 @@ function LoginPage() {
                 <p>The Calorie Calculator is a feature only available to members with an account.</p>
                 <p>Please login to get access now!</p>
 
-                {loading && <span><p className="loading-message">Loading...</p></span>}
+                {loading && <div className="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>}
 
                 <form className="signup-login__form" onSubmit={handleSubmit(onFormSubmit)}>
                     <fieldset>
@@ -78,7 +77,9 @@ function LoginPage() {
                             errors={errors}
                             className="signup-login__input"
                         />
+
                         {error && <span><p className="error-message">The username or password is incorrect. <br/>Please try again <br/>or sign up by following the link below.</p></span>}
+
                         <Button
                             type="submit"
                             title="login"

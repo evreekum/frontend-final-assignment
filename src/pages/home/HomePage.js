@@ -12,7 +12,6 @@ function HomePage() {
                 <Header/>
             </header>
             <main>
-
                 <SearchBar/>
             </main>
         </div>

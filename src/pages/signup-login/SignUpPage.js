@@ -30,7 +30,6 @@ function SignUpPage() {
                 email: data.email,
                 role: [data.user]
             });
-            // console.log(response);
             history.push("/login");
             toggleSuccess(true);
             setSuccessMessage(response.data.message);
@@ -49,7 +48,7 @@ function SignUpPage() {
                 <p>The Calorie Calculator is a feature only available to members with an account.</p>
                 <p>Please sign up and login to get access now!</p>
 
-                {loading && <span><p className="loading-message">Loading...</p></span>}
+                {loading && <div className="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>}
                 {success && <span>{successMessage &&
                     <p className="loading-message">{successMessage}! You are getting redirected to login.</p>}</span>}
 
@@ -119,5 +118,4 @@ function SignUpPage() {
         </main>
     )
 }
-
 export default SignUpPage;

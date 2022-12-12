@@ -33,7 +33,7 @@ function NavBar() {
                             <Button
                                 type="button"
                                 title="log in"
-                                className="auth__btn login__btn"
+                                className="auth__btn"
                                 onClick={() => history.push("/login")}
                             />
                         </li>

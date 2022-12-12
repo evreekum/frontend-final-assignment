@@ -52,7 +52,6 @@ function AuthContextProvider({children}) {
     }
 
     function login(data) {
-        console.log(data);
         localStorage.setItem("token", data.accessToken);
         setAuth({
             ...auth,
@@ -65,7 +64,6 @@ function AuthContextProvider({children}) {
             },
             status: "done"
         });
-        console.log("Ingelogd!")
         history.push("/calculator");
     }
 
@@ -76,7 +74,6 @@ function AuthContextProvider({children}) {
             user: null,
             status: "done",
         });
-        console.log("Uitgelogd!");
         history.push("/");
     }
 
@@ -88,9 +85,21 @@ function AuthContextProvider({children}) {
     }
     return (
         <AuthContext.Provider value={authContextData}>
-            {auth.status === "done" ? children : <p className="loading-message">Loading...</p>}
+            {auth.status === "done" ? children : <div className="lds-spinner">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>}
         </AuthContext.Provider>
     )
 }
-
 export default AuthContextProvider;

@@ -15,5 +15,4 @@ function InputFieldRegular({type, name, value, placeholder, onChange, min}) {
             />
     )
 }
-
 export default InputFieldRegular;

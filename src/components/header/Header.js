@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import Button from "../button/Button";
 import {HashLink} from "react-router-hash-link";
 import "./Header.css";
-// import "../recipecard/RecipeCard.css";
 import "../button/Button.css";
 import axios from "axios";
 import RecipeCard from "../recipecard/RecipeCard";
@@ -11,7 +10,7 @@ import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-
+import "../loading/LoadingSpinner.css";
 
 const apiKey = process.env.REACT_APP_API_KEY_HOME;
 const apiId = process.env.REACT_APP_API_ID_HOME;
@@ -19,12 +18,7 @@ const apiId = process.env.REACT_APP_API_ID_HOME;
 function Header() {
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
-    const [sliderOne, setSliderOne] = useState([]);
-    const [sliderTwo, setSliderTwo] = useState([]);
-    const [sliderTree, setSliderTree] = useState([]);
-    const [sliderFour, setSliderFour] = useState([]);
-    const [sliderFive, setSliderFive] = useState([]);
-    const [sliderSix, setSliderSix] = useState([]);
+    const [sliderRecipes, setSliderRecipes] = useState([]);
 
     useEffect(() => {
         fetchData();
@@ -48,14 +42,7 @@ function Header() {
                 }
             });
             const recipeData = response.data.hits;
-            setSliderOne(recipeData.slice(0, 1));
-            setSliderTwo(recipeData.slice(2, 3));
-            setSliderTree(recipeData.slice(4, 5));
-            setSliderFour(recipeData.slice(6, 7));
-            setSliderFive(recipeData.slice(8, 9));
-            setSliderSix(recipeData.slice(10, 11));
-            console.log(recipeData);
-            console.log(response.data);
+            setSliderRecipes(recipeData.slice(0, 20));
         } catch (error) {
             console.error(error);
             toggleError(true);
@@ -78,111 +65,55 @@ function Header() {
                 </div>
             </div>
             <div className="swiper-container">
+                {loading && <div className="lds-spinner">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>}
+
                 <div className="swiper-wrapper" id="swiper-wrapper">
                     <Swiper
                         modules={[Navigation, Pagination]}
-                        spaceBetween={25}
-                        slidesPerView={3}
-                        slidesPerGroup={3}
+                        spaceBetween={15}
+                        slidesPerView={5}
+                        slidesPerGroup={4}
                         loop={true}
                         navigation={true}
                         pagination={{clickable: true}}
-                        onSlideChange={() => console.log("slide changed")}
-                        onSwiper={(swiper) => console.log(swiper)}
                         className="mySwiper"
                         id="mySwiper"
                     >
-                        <SwiperSlide>
-                            {Object.keys(sliderOne).length > 0 && sliderOne.map((recipe) => (
-                                <RecipeCard
-                                    key={recipe.recipe.url}
-                                    id={recipe.recipe.uri.split("_")[1]}
-                                    image={recipe.recipe.images.REGULAR.url}
-                                    title={recipe.recipe.label}
-                                    calories={Math.round(recipe.recipe.calories)}
-                                    ingredients={recipe.recipe.ingredientLines.length}
-                                    time={recipe.recipe.totalTime}
-                                />
-                            ))}
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            {Object.keys(sliderTwo).length > 0 && sliderTwo.map((recipe) => (
-                                <RecipeCard
-                                    className="header-card"
-                                    key={recipe.recipe.url}
-                                    id={recipe.recipe.uri.split("_")[1]}
-                                    image={recipe.recipe.images.REGULAR.url}
-                                    title={recipe.recipe.label}
-                                    calories={Math.round(recipe.recipe.calories)}
-                                    ingredients={recipe.recipe.ingredientLines.length}
-                                    time={recipe.recipe.totalTime}
-                                />
-                            ))}
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            {Object.keys(sliderTree).length > 0 && sliderTree.map((recipe) => (
-                                <RecipeCard
-                                    className="header-card"
-                                    key={recipe.recipe.url}
-                                    id={recipe.recipe.uri.split("_")[1]}
-                                    image={recipe.recipe.images.REGULAR.url}
-                                    title={recipe.recipe.label}
-                                    calories={Math.round(recipe.recipe.calories)}
-                                    ingredients={recipe.recipe.ingredientLines.length}
-                                    time={recipe.recipe.totalTime}
-                                />
-                            ))}
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            {Object.keys(sliderFour).length > 0 && sliderFour.map((recipe) => (
-                                <RecipeCard
-                                    className="header-card"
-                                    key={recipe.recipe.url}
-                                    id={recipe.recipe.uri.split("_")[1]}
-                                    image={recipe.recipe.images.REGULAR.url}
-                                    title={recipe.recipe.label}
-                                    calories={Math.round(recipe.recipe.calories)}
-                                    ingredients={recipe.recipe.ingredientLines.length}
-                                    time={recipe.recipe.totalTime}
-                                />
-                            ))}
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            {Object.keys(sliderFive).length > 0 && sliderFive.map((recipe) => (
-                                <RecipeCard
-                                    className="header-card"
-                                    key={recipe.recipe.url}
-                                    id={recipe.recipe.uri.split("_")[1]}
-                                    image={recipe.recipe.images.REGULAR.url}
-                                    title={recipe.recipe.label}
-                                    calories={Math.round(recipe.recipe.calories)}
-                                    ingredients={recipe.recipe.ingredientLines.length}
-                                    time={recipe.recipe.totalTime}
-                                />
-                            ))}
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            {Object.keys(sliderSix).length > 0 && sliderSix.map((recipe) => (
-                                <RecipeCard
-                                    className="header-card"
-                                    key={recipe.recipe.url}
-                                    id={recipe.recipe.uri.split("_")[1]}
-                                    image={recipe.recipe.images.REGULAR.url}
-                                    title={recipe.recipe.label}
-                                    calories={Math.round(recipe.recipe.calories)}
-                                    ingredients={recipe.recipe.ingredientLines.length}
-                                    time={recipe.recipe.totalTime}
-                                />
-                            ))}
-                        </SwiperSlide>
-                    </Swiper>
+                        {error &&
+                            <span><p className="error-message">Something went wrong. Refresh the page and try again.</p></span>}
 
+                        <ul>
+                            {Object.keys(sliderRecipes).length > 0 && sliderRecipes.map((recipe, index) => (
+                                <SwiperSlide key={index}>
+                                    <RecipeCard
+                                        key={recipe._links.self.href}
+                                        id={recipe.recipe.uri.split("_")[1]}
+                                        image={recipe.recipe.images.REGULAR.url}
+                                        title={recipe.recipe.label}
+                                        calories={Math.round(recipe.recipe.calories)}
+                                        ingredients={recipe.recipe.ingredientLines.length}
+                                        time={recipe.recipe.totalTime}
+                                    />
+                                </SwiperSlide>
+                            ))}
+                        </ul>
+                    </Swiper>
                 </div>
             </div>
-
-
         </div>
     )
 }
-
 export default Header;

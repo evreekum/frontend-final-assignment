@@ -51,7 +51,7 @@ function RecipePage() {
     }
 
     return (
-        <main className="recipe-page__outer-container outer-container">
+        <main className="outer-container">
             {Object.keys(recipe).length > 0 &&
                 <article className="recipe-page__inner-container inner-container">
                     <section className="recipe-page__description">
@@ -59,11 +59,26 @@ function RecipePage() {
                         <div className="recipe-page__title">
                             <h4>{recipe.label}</h4>
                             <p className="recipe-page__time"><img className="clock-icon__svg" src={ClockIcon}
-                                    alt="Clock Icon"/><strong>{recipe.totalTime}</strong>min</p>
+                                                                  alt="Clock Icon"/><strong>{recipe.totalTime}</strong>min
+                            </p>
                         </div>
 
-                        {loading && <span><p className="loading-message">Loading...</p></span>}
-                        {error && <span><p className="error-message">Something went wrong. Please return to the Home page and try again.</p></span>}
+                        {loading && <div className="lds-spinner">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>}
+                        {error &&
+                            <span><p className="error-message">Something went wrong. Please return to the Home page and try again.</p></span>}
 
                         <p className="recipe-page__instructions">
                             Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat
@@ -203,4 +218,5 @@ function RecipePage() {
         </main>
     )
 }
+
 export default RecipePage;
