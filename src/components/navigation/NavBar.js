@@ -19,7 +19,7 @@ function NavBar() {
                     <li><NavLink to="/" exact className="nav__li">home</NavLink></li>
                     <li><HashLink to="#about__footer" className="nav__li">about</HashLink></li>
                     <li><NavLink to="/calculator" className="nav__li">calculator</NavLink></li>
-                    {isAuth.isAuth ?
+                    {isAuth ?
                         <li>
                             <Button
                                 type="button"
@@ -33,16 +33,14 @@ function NavBar() {
                             <Button
                                 type="button"
                                 title="log in"
-                                className="auth__btn login__btn"
+                                className="auth__btn"
                                 onClick={() => history.push("/login")}
                             />
                         </li>
                     }
                 </ul>
-
             </nav>
         </div>
     )
 }
-
 export default NavBar;

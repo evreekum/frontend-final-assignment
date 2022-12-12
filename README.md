@@ -15,7 +15,8 @@ Don't look further because this application is made for you!
 
 With this application you can search recipes based on their ingredients, cooking time, meal type, cuisine or dietary requirements!
 <br>
-It also has the ability to search for the calorie count and nutrients of products by using the 'Calorie CalculatorPage'.
+It also has the ability to search for the calorie count and nutrients of products by using the 'Calorie Calculator'.
+The 'Calorie Calculator' is a feature only available to member with an account. To get access you sign up and login!
 
 -----------
 2. Features
@@ -26,18 +27,18 @@ NavBar:
 <br>
 Every page has a navigation-bar where you can easily navigate between the different pages and functions.
 <br>
-Clicking on the logo 'The Clueless Cook' and on 'HomePage' will bring you back to the homepage.
+Clicking on the logo 'The Clueless Cook' and on 'Home' will bring you back to the homepage.
 <br>
 Clicking 'About' brings you to the footer with the about-information of this website.
 <br>
-Clicking 'CalculatorPage' will bring you to the 'Calorie CalculatorPage' page.
+Clicking 'Calculator' will bring you to the 'Calculator' page.
 
 
 Homepage:
 <br>
 The header of the homepage always features some random recipes as a suggestion. You can directly go to the recipe-page by clicking on it.
 
-In the main of the homepage you can search for recipes by typing your desired ingredient(s) in the "RecipePage search" field. You can put in multiple ingredients using a ',' to distinguish the separate ingredients.
+In the main of the homepage you can search for recipes by typing your desired ingredient(s) in the "Recipe search" field. You can put in multiple ingredients using a ',' to distinguish the separate ingredients.
 You can just search by ingredient name, but you can also use the following option to narrow your search down:
 * Meal Type: this will let you choose what type of meal you would like to find, ie. Breakfast, Lunch, Dinner, etc..
 * Cuisine: this will let you choose what type of cuisine you would like to find, ie. American, Asian, British, etc..
@@ -49,19 +50,28 @@ By opening a new tab you can have multiple recipes open at the same time. This c
 This way your search results will remain open on the homepage.
 
 
-RecipePage-page:
+Recipe-page:
 <br>
 The recipe-page features all the information needed to prepare the recipe ie. ingredients, etc..
 It also shows you the nutrients of the recipe and the health labels associated with the recipe.
+You can find the link to the original recipe source at the bottom of the description, the ➜︎ points at the link.
 
 
-Calorie CalculatorPage-page:
+Calculator-page:
 <br>
-The Calorie CalculatorPage lets you find products and their calories, fat, and carbohydrates content. You can add different products together that add up and give you the total amount of calories, fat and carbohydrates.
+The Calorie Calculator lets you find products and their calories, fat, and carbohydrates content. You can add different products together that add up and give you the total amount of calories, fat and carbohydrates.
+This feature is only available to members with an account. To access sign up and login.
 
+Sign Up-page:
+<br>
+The sign up- page asks the user to fill in their email address and make up a 'Username' and 'Password'. 
+After signing up the user gets redirected to the login-page.
+
+Login-page:
+<br>
+The login-page lets the user login. When successful the user is redirected to the Calculator-page.
 
 Homepage preview:
-<strong>ADD SCREENSHOT HOMEPAGE!!!</strong>
 
 ---------------
 3. Installation

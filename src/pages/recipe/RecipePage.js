@@ -4,29 +4,28 @@ import {useParams} from "react-router-dom";
 import ClockIcon from "../../assets/icons/time.png";
 import "../../components/recipecard/RecipeCard.css";
 import "./RecipePage.css";
+import "../../App.css";
 import TabTitle from "../../helpers/TabTitle";
-
 
 const apiKey = process.env.REACT_APP_API_KEY_HOME;
 const apiId = process.env.REACT_APP_API_ID_HOME;
-
 
 function RecipePage() {
     const {id} = useParams();
     const [recipe, setRecipe] = useState({});
     const [ingredients, setIngredients] = useState([]);
     const [healthLabels, setHealthLabels] = useState([]);
-    // const [nutrients, setNutrients] = useState([]);
+    const [error, toggleError] = useState(false);
+    const [loading, toggleLoading] = useState(false);
     TabTitle(`${recipe.label}`);
-
 
     useEffect(() => {
         fetchRecipeData();
     }, [id]);
 
-
     async function fetchRecipeData() {
-
+        toggleError(false);
+        toggleLoading(true);
         try {
             const response = await axios.get(`https://api.edamam.com/api/recipes/v2/${id}`, {
                 headers: {
@@ -38,35 +37,48 @@ function RecipePage() {
                     app_id: apiId,
                 }
             });
-            console.log("Response:", response.data.recipe.ingredientLines);
-
             const fetchRecipe = response.data.recipe;
             const fetchIngredients = fetchRecipe.ingredientLines;
             const fetchHealthLabels = fetchRecipe.healthLabels;
             setRecipe(fetchRecipe);
             setIngredients(fetchIngredients);
             setHealthLabels(fetchHealthLabels);
-            console.log("FetchRecipe:", fetchRecipe);
-
         } catch (error) {
             console.error(error);
+            toggleError(true);
         }
-        // fetchRecipeData();
+        toggleLoading(false);
     }
 
-
     return (
-        <main className="recipe-page__outer-container outer-container">
+        <main className="outer-container">
             {Object.keys(recipe).length > 0 &&
                 <article className="recipe-page__inner-container inner-container">
                     <section className="recipe-page__description">
+
                         <div className="recipe-page__title">
                             <h4>{recipe.label}</h4>
-                            <p><img className="clock-icon__svg" src={ClockIcon}
-                                    alt="Clock Icon"/><strong>{recipe.totalTime}</strong> min </p>
-
-                            {/*<p><ClockIcon classname="clock-icon__svg" alt="Clock Icon"/>{recipe.totalTime} min </p>*/}
+                            <p className="recipe-page__time"><img className="clock-icon__svg" src={ClockIcon}
+                                                                  alt="Clock Icon"/><strong>{recipe.totalTime}</strong>min
+                            </p>
                         </div>
+
+                        {loading && <div className="lds-spinner">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>}
+                        {error &&
+                            <span><p className="error-message">Something went wrong. Please return to the Home page and try again.</p></span>}
 
                         <p className="recipe-page__instructions">
                             Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat
@@ -97,8 +109,6 @@ function RecipePage() {
                             Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a,
                             ultricies in,
                             diam. Sed arcu. Cras consequat.
-
-
                         </p>
                         <a className="recipe-page__original-link" href={recipe.url} target="_blank"
                            rel="nofollow, noopener, noreferrer">Click here for the original recipe</a>
@@ -110,17 +120,15 @@ function RecipePage() {
                         <section className="recipe-page__ingredients">
                             <h5>ingredients</h5>
                             <ul>
-                                {ingredients.length && ingredients.map((ingredient) => (
-
-                                    <li key={ingredients.foodId}>{ingredient}</li>
-
+                                {ingredients.length && ingredients.map((ingredient, index) => (
+                                    <li key={index}>{ingredient}</li>
                                 ))}
                             </ul>
                         </section>
 
-                        <section className="recipe-page__nutrients">
+                        <section>
                             <h5>nutrients</h5>
-                            <table className="recipe-page__nutrients-table">
+                            <table>
                                 <tbody>
                                 <tr>
                                     <td className="recipe-nutrients__row-1"></td>
@@ -137,7 +145,6 @@ function RecipePage() {
                                     <td className="recipe-nutrients__row-3">g</td>
                                 </tr>
                                 <tr>
-
                                     <td className="recipe-nutrients__row-1">{recipe.totalNutrients.ENERC_KCAL.label}
                                     </td>
                                     <td className="recipe-nutrients__row-2">{Math.round(recipe.totalNutrients.ENERC_KCAL.quantity)}
@@ -200,11 +207,9 @@ function RecipePage() {
                     <section>
                         <h5>health labels</h5>
                         <ul className="recipe-page__health-label">
-                            {healthLabels.map((healthLabel) => (
-
-                                <li key={recipe.totalDaily[0]}
+                            {healthLabels.map((healthLabel, index) => (
+                                <li key={index}
                                     className="recipe-page__health-label__li">{healthLabel}</li>
-
                             ))}
                         </ul>
                     </section>

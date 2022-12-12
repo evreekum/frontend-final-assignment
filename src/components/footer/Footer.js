@@ -8,7 +8,6 @@ import {ReactComponent as LinkedInIcon} from "../../assets/icons/linkedin.svg";
 import {ReactComponent as TwitterIcon} from "../../assets/icons/twitter.svg";
 import FooterListItem from "./helpers/FooterListItem";
 
-
 function Footer() {
 
     return (
@@ -27,7 +26,7 @@ function Footer() {
                         <p>This application</p>
                         <p>is made by</p>
                         <p>Evelien van Reekum</p>
-                        <p>June 2022</p>
+                        <p>November 2022</p>
                     </FooterListItem>
 
                     <FooterListItem title="contact">
@@ -58,5 +57,4 @@ function Footer() {
         </footer>
     )
 }
-
 export default Footer;

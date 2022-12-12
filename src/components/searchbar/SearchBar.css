@@ -1,7 +1,7 @@
 .searchbar__outer-container {
     height: 90px;
     background-color: var(--dark-bg-font-color);
-    margin: 90px 0 50px 0;
+    margin: 30px 0;
 }
 
 .searchbar__inner-container {

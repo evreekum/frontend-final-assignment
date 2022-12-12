@@ -11,5 +11,4 @@ function FooterListItem({title, children}) {
         </>
     )
 }
-
 export default FooterListItem;

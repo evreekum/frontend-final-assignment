@@ -22,53 +22,42 @@ function SearchBar() {
     const [count, setCount] = useState(0);
     const [from, setFrom] = useState(0);
     const [to, setTo] = useState(0);
-    const [updated, setUpdated] = useState(search);
-
+    const [updatedSearch, setUpdatedSearch] = useState(search);
+    const [updatedMealType, setUpdatedMealType] = useState(mealType);
+    const [updatedCuisine, setUpdatedCuisine] = useState(cuisine);
+    const [error, toggleError] = useState(false);
+    const [loading, toggleLoading] = useState(false);
 
     function nextClick() {
         setRecipesUrl(allData.next.href);
-        window.scrollTo({top: 550, left: 0, behavior: "smooth"})
-        console.log(recipesUrl);
+        window.scrollTo({top: 790, left: 0, behavior: "smooth"})
     }
 
     useEffect(() => {
-        console.log("useEffect 1");
-        if(search) {
+        if (search) {
             fetchData();
         }
     }, []);
 
-    useEffect(() => {
-        console.log("useEffect 2")
-        if(recipesUrl) {
-            fetchData();
-        }
-    }, [recipesUrl]);
-
-
     function onFormSubmit(e) {
         e.preventDefault();
-        // console.log(data);
-        console.log("Submitted!");
         fetchData();
         setSearch("");
-        setUpdated(search);
+        setMealType("");
+        setCuisine("");
+        setDiet("");
+        setTime("");
+        setUpdatedSearch(search);
+        setUpdatedMealType(mealType);
+        setUpdatedCuisine(cuisine);
     }
 
-    // useEffect(() => {
-    //     const controller = new AbortController();
-    //     fetchData();
-    //     console.log("useEffect 3");
-    //     return () => {
-    //         controller.abort();
-    //     };
-    //
-    // }, []);
-
     async function fetchData() {
-
+        toggleError(false);
+        toggleLoading(true);
         try {
             const response = await axios.get(recipesUrl, {
+                mode: "onSubmit",
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -83,29 +72,28 @@ function SearchBar() {
                     time: time ? time : null
                 }
             });
-            console.log("Data:", response.data);
             const recipeData = response.data;
             setRecipes(recipeData.hits);
             setAllData(recipeData._links);
             setCount(recipeData.count);
             setFrom(recipeData.from);
             setTo(recipeData.to);
-            console.log("Count:", count);
-            console.log("From:", from);
-            console.log("To:", to)
-            console.log("RecipeHits:", recipeData.hits);
-
         } catch (error) {
             console.error(error);
+            toggleError(true);
         }
-
+        toggleLoading(false);
     }
+
+    useEffect(() => {
+        if (recipesUrl) {
+            fetchData();
+        }
+    }, [recipesUrl]);
 
     return (
         <>
-
             <div className="searchbar__outer-container outer-container">
-
                 <form className="searchbar__inner-container inner-container" onSubmit={(onFormSubmit)}>
                     <InputFieldRegular
                         type="search"
@@ -127,7 +115,6 @@ function SearchBar() {
                         <option value="snack">Snack</option>
                         <option value="teatime">Teatime</option>
                     </SelectOptions>
-
                     <SelectOptions
                         type="cuisine"
                         name="cuisineType"
@@ -156,7 +143,6 @@ function SearchBar() {
                         <option value="south east asian">south east asian</option>
                         <option value="world">world</option>
                     </SelectOptions>
-
                     <SelectOptions
                         type="diet"
                         name="diet"
@@ -170,7 +156,6 @@ function SearchBar() {
                         <option value="low-fat">low-fat</option>
                         <option value="low-sodium">low-sodium</option>
                     </SelectOptions>
-
                     <SelectOptions
                         type="Time"
                         name="time"
@@ -187,24 +172,25 @@ function SearchBar() {
                         <option value="105-120">105-120 min</option>
                         <option value="120+">120+ min</option>
                     </SelectOptions>
-
                     <Button
                         type="submit"
                         title="search"
-
                     />
                 </form>
             </div>
             <div className="outer-container">
+                {error &&
+                    <span><p className="error-message">Something went wrong. Refresh the page and try again.</p></span>}
+                {loading && <div className="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>}
 
-                <div className="searchbar__count">
-                    <p><strong>{count}</strong> recipes found for <strong>{updated}</strong></p>
-                    <p>Results <strong>{from}</strong> to <strong>{to}</strong></p>
-                </div>
-
+                {Object.keys(updatedSearch).length > 0 &&
+                    <div className="searchbar__count">
+                        <p><strong>{count}</strong> recipes found for <strong>{updatedSearch}</strong> <strong>{updatedCuisine}</strong> <strong>{updatedMealType}</strong></p>
+                        <p>Results <strong>{from}</strong> to <strong>{to}</strong></p>
+                    </div>
+                }
 
                 <ul className="recipe-card-results__ul">
-
                     {Object.keys(recipes).length > 0 && recipes.map((recipe) => (
                         <RecipeCard
                             key={recipe.recipe.url}
@@ -216,19 +202,17 @@ function SearchBar() {
                             time={recipe.recipe.totalTime}
                         />
                     ))}
-
                 </ul>
-                <Button
-                    type="button"
-                    title="next"
-                    onClick={nextClick}
-                    disabled={!allData.next}
-                />
+
+                {Object.keys(allData).length > 0 &&
+                    <Button
+                        type="button"
+                        title="next"
+                        onClick={nextClick}
+                        disabled={!allData}
+                    />}
             </div>
         </>
-
-
     )
 }
-
 export default SearchBar;
