@@ -81,7 +81,8 @@ The login-page lets the user login. When successful the user is redirected to th
 <br>
 
 <h5><u>Homepage preview:</u></h5>
-![home-preview-new.png](src%2Fassets%2Fimages%2Fhome-preview-new.png)
+![home-preview-new.png](https://github.com/evreekum/frontend-final-assignment/blob/main/src/assets/images/home-preview-new.png?raw=true)
+
 
 <br>
 
