@@ -46,11 +46,10 @@
     "type": "git",
     "url": "git+https://github.com/evreekum/frontend-final-assignment.git"
   },
-  "author": "Evelien van Reekum",
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/evreekum/frontend-final-assignment/issues"
   },
-  "homepage": "https://github.com/evreekum/frontend-final-assignment#readme",
-  "devDependencies": {}
+  "homepage": "https://localhost:3000"
 }
