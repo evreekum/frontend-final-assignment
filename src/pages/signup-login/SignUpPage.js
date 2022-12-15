@@ -6,6 +6,7 @@ import InputFieldRegister from "../../components/inputfield/InputFieldRegister";
 import "./SignUp-Login.css";
 import Button from "../../components/button/Button";
 import TabTitle from "../../helpers/TabTitle";
+import LoadingSpinner from "../../components/loading/LoadingSpinner";
 
 function SignUpPage() {
     TabTitle("Sign Up");
@@ -48,7 +49,7 @@ function SignUpPage() {
                 <p>The Calorie Calculator is a feature only available to members with an account.</p>
                 <p>Please sign up and login to get access now!</p>
 
-                {loading && <div className="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>}
+                {loading && <LoadingSpinner/>}
                 {success && <span>{successMessage &&
                     <p className="loading-message">{successMessage}! You are getting redirected to login.</p>}</span>}
 
@@ -118,4 +119,5 @@ function SignUpPage() {
         </main>
     )
 }
+
 export default SignUpPage;
