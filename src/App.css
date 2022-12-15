@@ -118,7 +118,7 @@ legend {
      padding: 10px 0;
  }
 .error-message:before {
-    content: "*";
+    content: "* ";
 }
 
 .loading-message {

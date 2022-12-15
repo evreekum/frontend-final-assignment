@@ -6,6 +6,7 @@ import "../../App.css";
 import axios from "axios";
 import RecipeCard from "../recipecard/RecipeCard";
 import InputFieldRegular from "../inputfield/InputFieldRegular";
+import LoadingSpinner from "../loading/LoadingSpinner";
 
 const apiKey = process.env.REACT_APP_API_KEY_HOME;
 const apiId = process.env.REACT_APP_API_ID_HOME;
@@ -27,6 +28,7 @@ function SearchBar() {
     const [updatedCuisine, setUpdatedCuisine] = useState(cuisine);
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
+    const [noInput, setNoInput] = useState(false);
 
     function nextClick() {
         setRecipesUrl(allData.next.href);
@@ -50,11 +52,15 @@ function SearchBar() {
         setUpdatedSearch(search);
         setUpdatedMealType(mealType);
         setUpdatedCuisine(cuisine);
+        if (search === "") {
+            setNoInput(true);
+        }
     }
 
     async function fetchData() {
         toggleError(false);
         toggleLoading(true);
+        setNoInput(false);
         try {
             const response = await axios.get(recipesUrl, {
                 mode: "onSubmit",
@@ -83,6 +89,7 @@ function SearchBar() {
             toggleError(true);
         }
         toggleLoading(false);
+
     }
 
     useEffect(() => {
@@ -99,7 +106,7 @@ function SearchBar() {
                         type="search"
                         name="search"
                         value={search}
-                        placeholder="Recipe Search"
+                        placeholder="Type your ingredients"
                         onChange={(e) => setSearch(e.target.value)}
                     />
                     <SelectOptions
@@ -181,11 +188,15 @@ function SearchBar() {
             <div className="outer-container">
                 {error &&
                     <span><p className="error-message">Something went wrong. Refresh the page and try again.</p></span>}
-                {loading && <div className="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>}
+                {loading && <LoadingSpinner/>}
+                {noInput &&
+                    <span><p className="error-message"><strong>Type your ingredients</strong> can't be empty. Type in an ingredient to search.</p></span>}
+
 
                 {Object.keys(updatedSearch).length > 0 &&
                     <div className="searchbar__count">
-                        <p><strong>{count}</strong> recipes found for <strong>{updatedSearch}</strong> <strong>{updatedCuisine}</strong> <strong>{updatedMealType}</strong></p>
+                        <p><strong>{count}</strong> recipes found for <strong>{updatedSearch}</strong>
+                            <strong> {updatedCuisine}</strong> <strong>{updatedMealType}</strong></p>
                         <p>Results <strong>{from}</strong> to <strong>{to}</strong></p>
                     </div>
                 }
@@ -215,4 +226,5 @@ function SearchBar() {
         </>
     )
 }
+
 export default SearchBar;

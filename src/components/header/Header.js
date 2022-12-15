@@ -10,7 +10,7 @@ import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "../loading/LoadingSpinner.css";
+import LoadingSpinner from "../loading/LoadingSpinner";
 
 const apiKey = process.env.REACT_APP_API_KEY_HOME;
 const apiId = process.env.REACT_APP_API_ID_HOME;
@@ -65,20 +65,7 @@ function Header() {
                 </div>
             </div>
             <div className="swiper-container">
-                {loading && <div className="lds-spinner">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>}
+                {loading && <LoadingSpinner/>}
 
                 <div className="swiper-wrapper" id="swiper-wrapper">
                     <Swiper
@@ -116,4 +103,5 @@ function Header() {
         </div>
     )
 }
+
 export default Header;

@@ -2,11 +2,11 @@
 
 ------------------------------------------------------------------------------------------------------------------------
 <strong><h3>Table of Content</h3></strong>
-<ins>
-1. Introduction
-2. Features
-3. Installation
-</ins>
+
+1. <h5>Introduction</h5>
+2. <h5>Features</h5>
+3. <h5>Installation</h5>
+
 <br>
 
 <br>
@@ -115,17 +115,24 @@ These (development) dependencies will show up in your package.json file as soon 
 In the terminal type the following commands and wait for them to install:
 <br>
 
-<code>npm install axios</code>     then press enter.
+<code>npm install axios</code>     then press enter.<br>
+This is used to make get/post request to access the data from the API.
 
-<code>npm install react-dom</code>     then press enter (this dependency is most likely already installed).
+<code>npm install react-dom</code>     then press enter (this dependency is most likely already installed).<br>
+This library is responsible for rendering the UI in the webbrowser.
 
-<code>npm install react-hook-form</code>     then press enter.
+<code>npm install react-hook-form</code>     then press enter.<br>
+This is a library that helps validate the forms used on the login- and signup-pages.
 
-<code>npm install react-router-dom</code>     then press enter.
+<code>npm install react-router-dom</code>     then press enter.<br>
+This package enables dynamic routing to display- and navigate between pages.
 
-<code>npm install react-router-hash-link</code>     then press enter.
+<code>npm install react-router-hash-link</code>     then press enter.<br>
+This is a solution to React Router's issue of not scrolling to #hash-fragments when using link components to navigate.
 
-<code>npm install swiper</code>     then press enter.
+<code>npm install swiper</code>     then press enter.<br>
+This package is for creating dynamic (touch) galleries. Used in this application for the carousel on the homepage.
+
 
 You can check if the following is added to the package.json file to make sure they've been installed (and you are using the right version):
 
@@ -209,7 +216,7 @@ Run the application by typing the following command in the terminal:
 
 <code>npm run start</code> then press enter *
 <br>There will appear a link that will take you to the application website.
-(http://localhost:1234)
+(http://localhost:3000)
 <br>
 
 *If you want to quit running the npm press <code>Ctrl + C</code>

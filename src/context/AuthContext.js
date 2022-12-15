@@ -1,6 +1,7 @@
 import React, {createContext, useEffect, useState} from "react";
 import axios from "axios";
 import {useHistory} from "react-router-dom";
+import LoadingSpinner from "../components/loading/LoadingSpinner";
 
 export const AuthContext = createContext({});
 
@@ -85,21 +86,9 @@ function AuthContextProvider({children}) {
     }
     return (
         <AuthContext.Provider value={authContextData}>
-            {auth.status === "done" ? children : <div className="lds-spinner">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>}
+            {auth.status === "done" ? children : <LoadingSpinner/>}
         </AuthContext.Provider>
     )
 }
+
 export default AuthContextProvider;

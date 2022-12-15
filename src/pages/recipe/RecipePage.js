@@ -6,6 +6,7 @@ import "../../components/recipecard/RecipeCard.css";
 import "./RecipePage.css";
 import "../../App.css";
 import TabTitle from "../../helpers/TabTitle";
+import LoadingSpinner from "../../components/loading/LoadingSpinner";
 
 const apiKey = process.env.REACT_APP_API_KEY_HOME;
 const apiId = process.env.REACT_APP_API_ID_HOME;
@@ -63,20 +64,7 @@ function RecipePage() {
                             </p>
                         </div>
 
-                        {loading && <div className="lds-spinner">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                        </div>}
+                        {loading && <LoadingSpinner/>}
                         {error &&
                             <span><p className="error-message">Something went wrong. Please return to the Home page and try again.</p></span>}
 

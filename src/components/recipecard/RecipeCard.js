@@ -25,7 +25,7 @@ function RecipeCard({id, image, title, calories, ingredients, time}) {
                 </Link>
             </article>
         </li>
-
     )
 }
+
 export default RecipeCard;

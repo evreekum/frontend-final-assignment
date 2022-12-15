@@ -7,6 +7,7 @@ import Button from "../../components/button/Button";
 import {AuthContext} from "../../context/AuthContext";
 import {Link} from "react-router-dom";
 import "./SignUp-Login.css";
+import LoadingSpinner from "../../components/loading/LoadingSpinner";
 
 function LoginPage() {
     TabTitle("Login");
@@ -40,7 +41,7 @@ function LoginPage() {
                 <p>The Calorie Calculator is a feature only available to members with an account.</p>
                 <p>Please login to get access now!</p>
 
-                {loading && <div className="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>}
+                {loading && <LoadingSpinner/>}
 
                 <form className="signup-login__form" onSubmit={handleSubmit(onFormSubmit)}>
                     <fieldset>
@@ -78,18 +79,21 @@ function LoginPage() {
                             className="signup-login__input"
                         />
 
-                        {error && <span><p className="error-message">The username or password is incorrect. <br/>Please try again <br/>or sign up by following the link below.</p></span>}
+                        {error &&
+                            <span><p className="error-message">The username or password is incorrect. <br/>Please try again <br/>or sign up by following the link below.</p></span>}
 
                         <Button
                             type="submit"
                             title="login"
                             className="auth__btn"
                         />
-                        <p className="signup__link">Not a member yet? <Link id="signup__link-link" to="/signup">Sign up here</Link></p>
+                        <p className="signup__link">Not a member yet? <Link id="signup__link-link" to="/signup">Sign up
+                            here</Link></p>
                     </fieldset>
                 </form>
             </div>
         </main>
     )
 }
+
 export default LoginPage;

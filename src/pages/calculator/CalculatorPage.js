@@ -5,6 +5,7 @@ import TabTitle from "../../helpers/TabTitle";
 import "./CalculatorPage.css";
 import axios from "axios";
 import InputFieldRegular from "../../components/inputfield/InputFieldRegular";
+import LoadingSpinner from "../../components/loading/LoadingSpinner";
 
 const apiKeyCalc = process.env.REACT_APP_API_KEY_CALCULATOR;
 const apiIdCalc = process.env.REACT_APP_API_ID_CALCULATOR;
@@ -35,7 +36,6 @@ function CalculatorPage() {
                     ingr: product
                 }
             });
-            // console.log("Result:", response.data);
             const productHints = response.data.hints[0];
             setFoundProduct([...foundProduct, productHints]);
 
@@ -109,9 +109,9 @@ function CalculatorPage() {
                         </form>
 
                         {product.length === 0 && error &&
-                            <p className="error-message">This field can't be empty. Please fill in an ingredient or
+                            <span><p className="error-message">This field can't be empty and/or you have mistyped something. Please fill in an ingredient or
                                 product
-                                and try again.</p>}
+                                and try again.</p></span>}
                         {loading && <p className="loading-message">Searching...</p>}
 
                         <table className="calc__table">
@@ -196,4 +196,5 @@ function CalculatorPage() {
         </main>
     )
 }
+
 export default CalculatorPage;
